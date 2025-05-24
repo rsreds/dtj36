@@ -1,0 +1,185 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce4w7q6ulqodm"]
+
+[ext_resource type="PackedScene" uid="uid://cyjsuudmlnffw" path="res://space_view.tscn" id="1_ig7tw"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Container" type="Control" parent="CanvasLayer"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Container"]
+layout_mode = 2
+anchor_bottom = 1.0
+offset_right = 797.0
+offset_bottom = 647.0
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Container/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(797, 647)
+render_target_update_mode = 4
+
+[node name="Node3D" parent="CanvasLayer/Container/SubViewportContainer/SubViewport" instance=ExtResource("1_ig7tw")]
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Container"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -354.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Container/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 438.0
+grow_horizontal = 2
+
+[node name="Panel" type="PanelContainer" parent="CanvasLayer/Container/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+color = Color(1, 0.23, 0.23, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Planet"
+
+[node name="Label2" type="Label" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Planet"
+
+[node name="Label3" type="Label" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Planet"
+
+[node name="Panel2" type="PanelContainer" parent="CanvasLayer/Container/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel2"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel2/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+color = Color(1, 0.23, 0.23, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Planet"
+
+[node name="Label2" type="Label" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Planet"
+
+[node name="Label3" type="Label" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Planet"
+
+[node name="Panel3" type="PanelContainer" parent="CanvasLayer/Container/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel3"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel3/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+color = Color(1, 0.23, 0.23, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel3/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel3/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Planet"
+
+[node name="Label2" type="Label" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel3/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Planet"
+
+[node name="Label3" type="Label" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel3/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Planet"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Container/Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Container/Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Container/Panel/HBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+color = Color(0.063, 0.35, 0.0677833, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Container/Panel/HBoxContainer/PanelContainer/ColorRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "10/20
+"
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/Container/Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Container/Panel/HBoxContainer/PanelContainer2"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+color = Color(0.063, 0.35, 0.0677833, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Container/Panel/HBoxContainer/PanelContainer2/ColorRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "10/20
+"
+
+[node name="PanelContainer3" type="PanelContainer" parent="CanvasLayer/Container/Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Container/Panel/HBoxContainer/PanelContainer3"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+color = Color(0.063, 0.35, 0.0677833, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Container/Panel/HBoxContainer/PanelContainer3/ColorRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "10/20
+"

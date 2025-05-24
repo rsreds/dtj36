@@ -1,0 +1,147 @@
+[gd_scene load_steps=17 format=3 uid="uid://cyjsuudmlnffw"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_v0ycd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0ycd"]
+emission_enabled = true
+emission = Color(0.999999, 0.482236, 0.0062724, 1)
+emission_energy_multiplier = 2.4
+
+[sub_resource type="Gradient" id="Gradient_v0ycd"]
+colors = PackedColorArray(0, 0, 0.15, 1, 0.1, 0.0469, 0.041, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2kh1h"]
+gradient = SubResource("Gradient_v0ycd")
+fill = 1
+fill_from = Vector2(0.478632, 0.512821)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5aonc"]
+panorama = SubResource("GradientTexture2D_2kh1h")
+
+[sub_resource type="Sky" id="Sky_v0ycd"]
+sky_material = SubResource("PanoramaSkyMaterial_5aonc")
+
+[sub_resource type="Environment" id="Environment_v0ycd"]
+background_mode = 2
+sky = SubResource("Sky_v0ycd")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.5
+ambient_light_energy = 0.2
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_2kh1h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5aonc"]
+albedo_color = Color(0.509804, 0.219608, 0.572549, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_2kh1h"]
+inner_radius = 1.95
+outer_radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2kh1h"]
+transparency = 1
+albedo_color = Color(1, 1, 0.24, 1)
+disable_receive_shadows = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dl0fr"]
+albedo_color = Color(0.121569, 0.701961, 0.572549, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_v0ycd"]
+inner_radius = 2.95
+outer_radius = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6r0o"]
+albedo_color = Color(0.121569, 0.247059, 0.572549, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_5aonc"]
+inner_radius = 3.95
+outer_radius = 4.0
+
+[sub_resource type="TorusMesh" id="TorusMesh_dl0fr"]
+inner_radius = 4.95
+outer_radius = 5.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8, 0)
+
+[node name="Sun" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_v0ycd")
+surface_material_override/0 = SubResource("StandardMaterial3D_v0ycd")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sun"]
+distance_fade_begin = 44.7
+omni_range = 15.9401
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v0ycd")
+
+[node name="Orbit1" type="Node3D" parent="."]
+transform = Transform3D(-0.603208, 0, 0.797584, 0, 1, 0, -0.797584, 0, -0.603208, 0, 0, 0)
+
+[node name="Marker3D" type="Marker3D" parent="Orbit1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Planet" type="Node3D" parent="Orbit1/Marker3D"]
+transform = Transform3D(0.578035, 0, 0, 0, 1, 0, 0, 0, 0.578035, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Orbit1/Marker3D/Planet"]
+mesh = SubResource("SphereMesh_2kh1h")
+surface_material_override/0 = SubResource("StandardMaterial3D_5aonc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Orbit1"]
+cast_shadow = 0
+mesh = SubResource("TorusMesh_2kh1h")
+surface_material_override/0 = SubResource("StandardMaterial3D_2kh1h")
+
+[node name="Orbit2" type="Node3D" parent="."]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0, 0, 0)
+
+[node name="Marker3D" type="Marker3D" parent="Orbit2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="Planet2" type="Node3D" parent="Orbit2/Marker3D"]
+transform = Transform3D(0.753359, 0, 0, 0, 1, 0, 0, 0, 0.753359, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Orbit2/Marker3D/Planet2"]
+mesh = SubResource("SphereMesh_2kh1h")
+surface_material_override/0 = SubResource("StandardMaterial3D_dl0fr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Orbit2"]
+cast_shadow = 0
+mesh = SubResource("TorusMesh_v0ycd")
+surface_material_override/0 = SubResource("StandardMaterial3D_2kh1h")
+
+[node name="Orbit3" type="Node3D" parent="."]
+transform = Transform3D(0.816138, 0, 0.577858, 0, 1, 0, -0.577858, 0, 0.816138, 0, 0, 0)
+
+[node name="Marker3D" type="Marker3D" parent="Orbit3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="Planet3" type="Node3D" parent="Orbit3/Marker3D"]
+transform = Transform3D(0.753359, 0, 0, 0, 1, 0, 0, 0, 0.753359, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Orbit3/Marker3D/Planet3"]
+mesh = SubResource("SphereMesh_2kh1h")
+surface_material_override/0 = SubResource("StandardMaterial3D_k6r0o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Orbit3"]
+cast_shadow = 0
+mesh = SubResource("TorusMesh_5aonc")
+surface_material_override/0 = SubResource("StandardMaterial3D_2kh1h")
+
+[node name="Orbit4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
+
+[node name="Marker3D" type="Marker3D" parent="Orbit4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Orbit4"]
+cast_shadow = 0
+mesh = SubResource("TorusMesh_dl0fr")
+surface_material_override/0 = SubResource("StandardMaterial3D_2kh1h")
