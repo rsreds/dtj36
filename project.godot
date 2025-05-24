@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 GameManager="*res://scripts/game_manager.gd"
 PlanetManager="*res://scripts/planet/planet_manager.gd"
 
+[display]
+
+window/vsync/vsync_mode=0
+
 [editor]
 
 version_control/plugin_name="GitPlugin"

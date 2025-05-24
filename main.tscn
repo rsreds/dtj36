@@ -1,13 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://ce4w7q6ulqodm"]
+[gd_scene load_steps=4 format=3 uid="uid://ce4w7q6ulqodm"]
 
 [ext_resource type="Script" uid="uid://6e3j164cfuct" path="res://space_view.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cyjsuudmlnffw" path="res://space_view.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://c1t2g5oykjn01" path="res://fps_label.gd" id="3_h2yge"]
 
-[node name="Node2D" type="Node2D"]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Container" type="Control" parent="CanvasLayer"]
+[node name="Container" type="Control"]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 15
@@ -18,23 +15,26 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Container"]
-layout_mode = 2
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 797.0
-offset_bottom = 647.0
+offset_right = -355.0
+grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
+stretch = true
 script = ExtResource("1_0xm2m")
 
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Container/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(797, 647)
+size = Vector2i(797, 648)
 render_target_update_mode = 4
 
-[node name="Node3D" parent="CanvasLayer/Container/SubViewportContainer/SubViewport" instance=ExtResource("1_ig7tw")]
+[node name="Node3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_ig7tw")]
 
-[node name="Panel" type="Panel" parent="CanvasLayer/Container"]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -45,95 +45,95 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Container/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 438.0
 grow_horizontal = 2
 
-[node name="Panel" type="PanelContainer" parent="CanvasLayer/Container/Panel/VBoxContainer"]
+[node name="Panel" type="PanelContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/Panel"]
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel/HBoxContainer"]
+[node name="ColorRect" type="ColorRect" parent="Panel/VBoxContainer/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 color = Color(1, 0.23, 0.23, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Panel/HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "Planet"
-
-[node name="Label2" type="Label" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Planet"
 
-[node name="Label3" type="Label" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/Panel/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Planet"
 
-[node name="Panel2" type="PanelContainer" parent="CanvasLayer/Container/Panel/VBoxContainer"]
+[node name="Label3" type="Label" parent="Panel/VBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Planet"
+
+[node name="Panel2" type="PanelContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/Panel2"]
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel2/HBoxContainer"]
+[node name="ColorRect" type="ColorRect" parent="Panel/VBoxContainer/Panel2/HBoxContainer"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 color = Color(1, 0.23, 0.23, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel2/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Panel2/HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel2/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "Planet"
-
-[node name="Label2" type="Label" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel2/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Planet"
 
-[node name="Label3" type="Label" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel2/HBoxContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/Panel2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Planet"
 
-[node name="Panel3" type="PanelContainer" parent="CanvasLayer/Container/Panel/VBoxContainer"]
+[node name="Label3" type="Label" parent="Panel/VBoxContainer/Panel2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Planet"
+
+[node name="Panel3" type="PanelContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/Panel3"]
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel3/HBoxContainer"]
+[node name="ColorRect" type="ColorRect" parent="Panel/VBoxContainer/Panel3/HBoxContainer"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 color = Color(1, 0.23, 0.23, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel3/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Panel3/HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel3/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "Planet"
-
-[node name="Label2" type="Label" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel3/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel3/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Planet"
 
-[node name="Label3" type="Label" parent="CanvasLayer/Container/Panel/VBoxContainer/Panel3/HBoxContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/Panel3/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Planet"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Container/Panel"]
+[node name="Label3" type="Label" parent="Panel/VBoxContainer/Panel3/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Planet"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -142,47 +142,53 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Container/Panel/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Panel/HBoxContainer"]
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Container/Panel/HBoxContainer/PanelContainer"]
+[node name="ColorRect" type="ColorRect" parent="Panel/HBoxContainer/PanelContainer"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 color = Color(0.063, 0.35, 0.0677833, 1)
 
-[node name="Label" type="Label" parent="CanvasLayer/Container/Panel/HBoxContainer/PanelContainer/ColorRect"]
+[node name="Label" type="Label" parent="Panel/HBoxContainer/PanelContainer/ColorRect"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "10/20
 "
 
-[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/Container/Panel/HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="Panel/HBoxContainer"]
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Container/Panel/HBoxContainer/PanelContainer2"]
+[node name="ColorRect" type="ColorRect" parent="Panel/HBoxContainer/PanelContainer2"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 color = Color(0.063, 0.35, 0.0677833, 1)
 
-[node name="Label" type="Label" parent="CanvasLayer/Container/Panel/HBoxContainer/PanelContainer2/ColorRect"]
+[node name="Label" type="Label" parent="Panel/HBoxContainer/PanelContainer2/ColorRect"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "10/20
 "
 
-[node name="PanelContainer3" type="PanelContainer" parent="CanvasLayer/Container/Panel/HBoxContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="Panel/HBoxContainer"]
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Container/Panel/HBoxContainer/PanelContainer3"]
+[node name="ColorRect" type="ColorRect" parent="Panel/HBoxContainer/PanelContainer3"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 color = Color(0.063, 0.35, 0.0677833, 1)
 
-[node name="Label" type="Label" parent="CanvasLayer/Container/Panel/HBoxContainer/PanelContainer3/ColorRect"]
+[node name="Label" type="Label" parent="Panel/HBoxContainer/PanelContainer3/ColorRect"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "10/20
 "
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("3_h2yge")

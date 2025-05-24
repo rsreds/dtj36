@@ -6,6 +6,7 @@ extends SubViewportContainer
 var hovered_node: Node3D = null
 var dragged_node: Node3D = null
 var drag_offset: Vector3 = Vector3.ZERO
+var original_position: Vector3 = Vector3.ZERO
 
 func _input(event: InputEvent):
 	var local_pos := get_local_mouse_position()
@@ -30,9 +31,8 @@ func _input(event: InputEvent):
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				if event.pressed:
 					dragged_node = node
-					drag_offset = dragged_node.global_transform.origin - result.position
-				else:
-					dragged_node = null
+					original_position = node.global_position
+					drag_offset = dragged_node.global_position - result.position
 
 	elif event is InputEventMouseMotion and dragged_node:
 		var new_from = camera.project_ray_origin(local_pos)
@@ -41,11 +41,27 @@ func _input(event: InputEvent):
 		var intersection = plane.intersects_ray(new_from, new_to)
 
 		if intersection:
-			dragged_node.global_transform.origin = intersection + drag_offset
+			dragged_node.global_position = intersection + drag_offset
 
 	else:
 		if !dragged_node:
 			_clear_hover()
+
+
+func _process(delta: float) -> void:
+	if dragged_node and !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		return_to_origin()
+
+
+func return_to_origin():
+	var tween := create_tween()
+	tween.tween_property(
+		dragged_node, 
+		"global_position",
+		original_position, 
+		0.3
+	).set_trans(Tween.TRANS_SPRING)
+	dragged_node = null
 
 
 func _set_hover(node):
