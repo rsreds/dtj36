@@ -3,9 +3,12 @@ extends SubViewportContainer
 
 const PLANET = preload("res://planet.tscn")
 const PLANET_CARD = preload("res://planet_card.tscn")
+const ORBIT = preload("res://orbit.tscn")
 
 @onready var camera: Camera3D = $SubViewport.get_camera_3d()
-@onready var world3d: World3D = $SubViewport/Node3D.get_world_3d()
+@onready var space_view: Node3D = $SubViewport/SpaceView
+@onready var world3d: World3D = $SubViewport/SpaceView.get_world_3d()
+
 
 var hovered_node: Node3D = null
 var dragged_node: Node3D = null
@@ -82,28 +85,50 @@ func _clear_hover():
 func _ready() -> void:
 	for card in v_box_card_container.get_children():
 		card.free()
+		
+	for orbit in space_view.get_children():
+		if orbit is OrbitNode:
+			orbit.free()
 	
 	var card1 = PLANET_CARD.instantiate()
 	var planet1 = PLANET.instantiate()
+	var orbit1 = ORBIT.instantiate()
+	orbit1.orbit_distance = 1
 	planet1.planet_size_multiplier = 3
 	planet1.planet_color = Color.YELLOW
+	orbit1.planet = planet1
 	card1.planet = planet1
 	card1.planet_name = "Pianeta1"
 	v_box_card_container.add_child(card1)
+	space_view.add_child(orbit1)
 	
 	var card2 = PLANET_CARD.instantiate()
 	var planet2 = PLANET.instantiate()
+	var orbit2 = ORBIT.instantiate()
+	orbit2.orbit_distance = 2
 	planet2.planet_size_multiplier = 2
 	planet2.planet_color = Color.INDIAN_RED
+	orbit2.planet = planet2
 	card2.planet = planet2
 	card2.planet_name = "Pianeta2"
 	v_box_card_container.add_child(card2)
+	space_view.add_child(orbit2)
+	
 	
 	var card3 = PLANET_CARD.instantiate()
 	var planet3 = PLANET.instantiate()
+	var orbit3 = ORBIT.instantiate()
+	var orbit4 = ORBIT.instantiate()
+	orbit3.orbit_distance = 3
+	orbit4.orbit_distance = 4
 	planet3.planet_size_multiplier = 4
 	planet3.planet_color = Color.SKY_BLUE
 	card3.planet = planet3
 	card3.planet_name = "Pianeta3"
+	orbit4.planet=planet3
 	v_box_card_container.add_child(card3)
+	space_view.add_child(orbit3)
+	space_view.add_child(orbit4)
+	
+	
 	

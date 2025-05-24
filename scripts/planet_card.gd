@@ -6,11 +6,12 @@ const PLANET = preload("res://planet.tscn")
 @onready var sub_view_port: SubViewport = $HBoxContainer/SubViewportContainer/SubViewPort
 @onready var label: Label = $HBoxContainer/VBoxContainer/Label
 
-var ROTATION_SPEED : float = 1
+var ROTATION_SPEED : float = 0.1
 
 func _ready() -> void:
 	if planet is not PlanetNode:
 		planet = PLANET.instantiate()
+	planet = planet.duplicate()
 	sub_view_port.add_child(planet)
 	label.text = planet_name
 

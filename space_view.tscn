@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyjsuudmlnffw"]
+[gd_scene load_steps=5 format=3 uid="uid://cyjsuudmlnffw"]
 
-[ext_resource type="PackedScene" uid="uid://dfjlpy0ta343d" path="res://planet.tscn" id="1_2kh1h"]
 [ext_resource type="Environment" uid="uid://b5jnsa07afmq6" path="res://space_environment.tres" id="1_5aonc"]
+[ext_resource type="PackedScene" uid="uid://ocr3reh1hduq" path="res://orbit.tscn" id="2_dl0fr"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_v0ycd"]
 
@@ -9,27 +9,6 @@
 emission_enabled = true
 emission = Color(0.999999, 0.482236, 0.0062724, 1)
 emission_energy_multiplier = 2.4
-
-[sub_resource type="TorusMesh" id="TorusMesh_2kh1h"]
-inner_radius = 1.95
-outer_radius = 2.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2kh1h"]
-transparency = 1
-albedo_color = Color(1, 1, 0.24, 1)
-disable_receive_shadows = true
-
-[sub_resource type="TorusMesh" id="TorusMesh_v0ycd"]
-inner_radius = 2.95
-outer_radius = 3.0
-
-[sub_resource type="TorusMesh" id="TorusMesh_5aonc"]
-inner_radius = 3.95
-outer_radius = 4.0
-
-[sub_resource type="TorusMesh" id="TorusMesh_dl0fr"]
-inner_radius = 4.95
-outer_radius = 5.0
 
 [node name="Node3D" type="Node3D"]
 
@@ -48,56 +27,17 @@ omni_range = 15.9401
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_5aonc")
 
-[node name="Orbit1" type="Node3D" parent="."]
+[node name="Orbit1" parent="." instance=ExtResource("2_dl0fr")]
 transform = Transform3D(-0.603208, 0, 0.797584, 0, 1, 0, -0.797584, 0, -0.603208, 0, 0, 0)
 
-[node name="Marker3D" type="Marker3D" parent="Orbit1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+[node name="Orbit2" parent="." instance=ExtResource("2_dl0fr")]
+transform = Transform3D(-0.27228, 0, -0.962218, 0, 1, 0, 0.962218, 0, -0.27228, 0, 0, 0)
+orbit_distance = 2
 
-[node name="Planet" parent="Orbit1/Marker3D" instance=ExtResource("1_2kh1h")]
+[node name="Orbit3" parent="." instance=ExtResource("2_dl0fr")]
+transform = Transform3D(0.931691, 0, 0.363251, 0, 1, 0, -0.363251, 0, 0.931691, 0, 0, 0)
+orbit_distance = 3
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Orbit1"]
-cast_shadow = 0
-mesh = SubResource("TorusMesh_2kh1h")
-surface_material_override/0 = SubResource("StandardMaterial3D_2kh1h")
-
-[node name="Orbit2" type="Node3D" parent="."]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0, 0, 0)
-
-[node name="Marker3D" type="Marker3D" parent="Orbit2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
-
-[node name="Planet" parent="Orbit2/Marker3D" instance=ExtResource("1_2kh1h")]
-planet_size_multiplier = 2
-planet_color = Color(0.863191, 0.930757, 0.267929, 1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Orbit2"]
-cast_shadow = 0
-mesh = SubResource("TorusMesh_v0ycd")
-surface_material_override/0 = SubResource("StandardMaterial3D_2kh1h")
-
-[node name="Orbit3" type="Node3D" parent="."]
-transform = Transform3D(0.816138, 0, 0.577858, 0, 1, 0, -0.577858, 0, 0.816138, 0, 0, 0)
-
-[node name="Marker3D" type="Marker3D" parent="Orbit3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-
-[node name="Planet" parent="Orbit3/Marker3D" instance=ExtResource("1_2kh1h")]
-planet_size_multiplier = 3
-planet_color = Color(1, 0, 0.883333, 1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Orbit3"]
-cast_shadow = 0
-mesh = SubResource("TorusMesh_5aonc")
-surface_material_override/0 = SubResource("StandardMaterial3D_2kh1h")
-
-[node name="Orbit4" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
-
-[node name="Marker3D" type="Marker3D" parent="Orbit4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Orbit4"]
-cast_shadow = 0
-mesh = SubResource("TorusMesh_dl0fr")
-surface_material_override/0 = SubResource("StandardMaterial3D_2kh1h")
+[node name="Orbit4" parent="." instance=ExtResource("2_dl0fr")]
+transform = Transform3D(-0.851727, 0, 0.523986, 0, 1, 0, -0.523986, 0, -0.851727, 0, 0, 0)
+orbit_distance = 4
