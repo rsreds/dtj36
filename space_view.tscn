@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://cyjsuudmlnffw"]
+[gd_scene load_steps=10 format=3 uid="uid://cyjsuudmlnffw"]
 
 [ext_resource type="PackedScene" uid="uid://dfjlpy0ta343d" path="res://planet.tscn" id="1_2kh1h"]
+[ext_resource type="Environment" uid="uid://b5jnsa07afmq6" path="res://space_environment.tres" id="1_5aonc"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_v0ycd"]
 
@@ -8,31 +9,6 @@
 emission_enabled = true
 emission = Color(0.999999, 0.482236, 0.0062724, 1)
 emission_energy_multiplier = 2.4
-
-[sub_resource type="Gradient" id="Gradient_v0ycd"]
-colors = PackedColorArray(0, 0, 0.15, 1, 0.1, 0.0469, 0.041, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2kh1h"]
-gradient = SubResource("Gradient_v0ycd")
-fill = 1
-fill_from = Vector2(0.478632, 0.512821)
-fill_to = Vector2(0, 0)
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5aonc"]
-panorama = SubResource("GradientTexture2D_2kh1h")
-
-[sub_resource type="Sky" id="Sky_v0ycd"]
-sky_material = SubResource("PanoramaSkyMaterial_5aonc")
-
-[sub_resource type="Environment" id="Environment_v0ycd"]
-background_mode = 2
-sky = SubResource("Sky_v0ycd")
-ambient_light_source = 3
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_sky_contribution = 0.5
-ambient_light_energy = 0.2
-tonemap_mode = 2
-glow_enabled = true
 
 [sub_resource type="TorusMesh" id="TorusMesh_2kh1h"]
 inner_radius = 1.95
@@ -70,7 +46,7 @@ distance_fade_begin = 44.7
 omni_range = 15.9401
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_v0ycd")
+environment = ExtResource("1_5aonc")
 
 [node name="Orbit1" type="Node3D" parent="."]
 transform = Transform3D(-0.603208, 0, 0.797584, 0, 1, 0, -0.797584, 0, -0.603208, 0, 0, 0)

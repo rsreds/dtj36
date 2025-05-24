@@ -1,4 +1,8 @@
 extends SubViewportContainer
+@onready var v_box_card_container: VBoxContainer = $"../SidePanel/VBoxCardContainer"
+
+const PLANET = preload("res://planet.tscn")
+const PLANET_CARD = preload("res://planet_card.tscn")
 
 @onready var camera: Camera3D = $SubViewport.get_camera_3d()
 @onready var world3d: World3D = $SubViewport/Node3D.get_world_3d()
@@ -74,3 +78,32 @@ func _clear_hover():
 	if hovered_node and hovered_node.has_method("set_glow"):
 		hovered_node.set_glow(false)
 	hovered_node = null
+
+func _ready() -> void:
+	for card in v_box_card_container.get_children():
+		card.free()
+	
+	var card1 = PLANET_CARD.instantiate()
+	var planet1 = PLANET.instantiate()
+	planet1.planet_size_multiplier = 3
+	planet1.planet_color = Color.YELLOW
+	card1.planet = planet1
+	card1.planet_name = "Pianeta1"
+	v_box_card_container.add_child(card1)
+	
+	var card2 = PLANET_CARD.instantiate()
+	var planet2 = PLANET.instantiate()
+	planet2.planet_size_multiplier = 2
+	planet2.planet_color = Color.INDIAN_RED
+	card2.planet = planet2
+	card2.planet_name = "Pianeta2"
+	v_box_card_container.add_child(card2)
+	
+	var card3 = PLANET_CARD.instantiate()
+	var planet3 = PLANET.instantiate()
+	planet3.planet_size_multiplier = 4
+	planet3.planet_color = Color.SKY_BLUE
+	card3.planet = planet3
+	card3.planet_name = "Pianeta3"
+	v_box_card_container.add_child(card3)
+	

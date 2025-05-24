@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://ch34qo7d3y7q"]
+
+[ext_resource type="PackedScene" uid="uid://c1v7fek043qtv" path="res://planet.tscn" id="1_5tdk4"]
+[ext_resource type="Script" uid="uid://dnoqelp5e7saq" path="res://scripts/planet_card.gd" id="1_7g2o6"]
+[ext_resource type="Environment" uid="uid://b5jnsa07afmq6" path="res://space_environment.tres" id="1_ehs4s"]
+
+[sub_resource type="World3D" id="World3D_7g2o6"]
+resource_local_to_scene = true
+environment = ExtResource("1_ehs4s")
+
+[node name="Panel" type="PanelContainer"]
+offset_right = 134.0
+offset_bottom = 80.0
+size_flags_vertical = 3
+script = ExtResource("1_7g2o6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(160, 0.035)
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SubViewPort" type="SubViewport" parent="HBoxContainer/SubViewportContainer"]
+world_3d = SubResource("World3D_7g2o6")
+handle_input_locally = false
+size = Vector2i(80, 80)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="HBoxContainer/SubViewportContainer/SubViewPort"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Planet" parent="HBoxContainer/SubViewportContainer/SubViewPort" instance=ExtResource("1_5tdk4")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="HBoxContainer/SubViewportContainer/SubViewPort"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.00237)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Planet"
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Planet"
+
+[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Planet"
