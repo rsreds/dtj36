@@ -129,6 +129,9 @@ func _ready() -> void:
 	v_box_card_container.add_child(card3)
 	space_view.add_child(orbit3)
 	space_view.add_child(orbit4)
-	
-	
-	
+
+
+func _on_step_button_pressed() -> void:
+	for orbit in space_view.get_children():
+		if orbit is OrbitNode:
+			orbit.step()

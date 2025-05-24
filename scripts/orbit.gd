@@ -10,7 +10,6 @@ var ORBIT_GAP : float = 0.75
 const PLANET = preload("res://planet.tscn")
 
 func _ready():
-	print("changing orbit position")
 	planet_marker.position.x = ORBIT_MARGIN + orbit_distance * ORBIT_GAP
 	orbit_mesh.mesh.inner_radius = ORBIT_MARGIN + orbit_distance * ORBIT_GAP - 0.025
 	orbit_mesh.mesh.outer_radius = ORBIT_MARGIN + orbit_distance * ORBIT_GAP + 0.025
@@ -18,3 +17,6 @@ func _ready():
 		planet = PLANET.instantiate()
 	planet_marker.add_child(planet)
 	
+func step():
+	var angle = PI/(5*orbit_distance)
+	rotate(Vector3(0,1,0), angle)
