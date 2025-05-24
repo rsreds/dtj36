@@ -7,8 +7,15 @@ var planet_list: PlanetList
 
 var planet_to_node_map: Dictionary[PlanetData, Node]
 
+func next_turn() -> void:
+	planet_list.step_all()
 
-func get_planet_node_from_data(planet: PlanetData): # -> PlanetNode:
+
+func draft_new_planet(new_planet_data: PlanetData) -> void:
+	planet_list.draft_planet(new_planet_data)
+
+
+func get_planet_node_from_data(planet: PlanetData) -> Node:
 	return planet_to_node_map[planet]
 
 

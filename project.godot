@@ -11,12 +11,14 @@ config_version=5
 [application]
 
 config/name="DTJ36"
+run/main_scene="uid://ce4w7q6ulqodm"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-PlanetManager="*res://scripts/planet_manager.gd"
+GameManager="*res://scripts/game_manager.gd"
+PlanetManager="*res://scripts/planet/planet_manager.gd"
 
 [editor]
 
