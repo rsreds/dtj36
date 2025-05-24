@@ -18,7 +18,7 @@ script = ExtResource("1_ihurt")
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="OrbitMesh" type="MeshInstance3D" parent="."]
 cast_shadow = 0
 mesh = SubResource("TorusMesh_ihurt")
 surface_material_override/0 = SubResource("StandardMaterial3D_2kh1h")

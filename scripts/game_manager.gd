@@ -3,16 +3,6 @@
 ## Controls objectives and resource values, plus calls on delegate managers to perform actions
 extends Node
 
-enum ActivateTool {
-	DESTROY,
-	BLUE_PLANT,
-	RED_PLANT,
-	YELLOW_PLANT,
-	GREEN_PLANT,
-	WHITE_PLANT,
-	FERTILISER
-}
-
 var score: int
 
 var corporation_check_count: int = 0
@@ -24,6 +14,8 @@ var yellow_plants_collected: int
 var white_plants_collected: int
 
 var objectives: Array[Callable] = []
+
+var is_dragging_new_planet: bool = true
 
 
 func _ready() -> void:

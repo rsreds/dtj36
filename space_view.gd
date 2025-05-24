@@ -7,13 +7,75 @@ const ORBIT = preload("res://orbit.tscn")
 
 @onready var camera: Camera3D = $SubViewport.get_camera_3d()
 @onready var space_view: Node3D = $SubViewport/SpaceView
-@onready var world3d: World3D = $SubViewport/SpaceView.get_world_3d()
+@onready var world3d: World3D = space_view.get_world_3d()
 
+var orbits: Dictionary
 
 var hovered_node: Node3D = null
 var dragged_node: Node3D = null
 var drag_offset: Vector3 = Vector3.ZERO
 var original_position: Vector3 = Vector3.ZERO
+
+
+func _ready() -> void:
+	for card in v_box_card_container.get_children():
+		card.free()
+		
+	for orbit in space_view.get_children():
+		if orbit is OrbitNode:
+			orbit.free()
+	
+	var card1 = PLANET_CARD.instantiate()
+	var planet1 = PLANET.instantiate()
+	var orbit1 = ORBIT.instantiate()
+	orbit1.name = "Orbit"
+	orbit1.orbit_distance = 1
+	planet1.planet_size_multiplier = 3
+	planet1.planet_color = Color.YELLOW
+	orbit1.planet = planet1
+	card1.planet = planet1
+	card1.planet_name = "Pianeta1"
+	v_box_card_container.add_child(card1)
+	space_view.add_child(orbit1)
+	
+	var card2 = PLANET_CARD.instantiate()
+	var planet2 = PLANET.instantiate()
+	var orbit2 = ORBIT.instantiate()
+	orbit2.name = "Orbit"
+	orbit2.orbit_distance = 2
+	planet2.planet_size_multiplier = 2
+	planet2.planet_color = Color.INDIAN_RED
+	orbit2.planet = planet2
+	card2.planet = planet2
+	card2.planet_name = "Pianeta2"
+	v_box_card_container.add_child(card2)
+	space_view.add_child(orbit2)
+	
+	
+	var card3 = PLANET_CARD.instantiate()
+	var planet3 = PLANET.instantiate()
+	var orbit3 = ORBIT.instantiate()
+	var orbit4 = ORBIT.instantiate()
+	orbit3.name = "Orbit"
+	orbit4.name = "Orbit"
+	orbit3.orbit_distance = 3
+	orbit4.orbit_distance = 4
+	planet3.planet_size_multiplier = 4
+	planet3.planet_color = Color.SKY_BLUE
+	card3.planet = planet3
+	card3.planet_name = "Pianeta3"
+	orbit4.planet=planet3
+	v_box_card_container.add_child(card3)
+	space_view.add_child(orbit3)
+	space_view.add_child(orbit4)
+
+	for orbit_node in space_view.get_children():
+		if orbit_node is OrbitNode:
+			var mesh_node = orbit_node.orbit_mesh
+			if mesh_node and mesh_node.mesh:
+				var radius = (mesh_node.mesh.get_aabb().size.x * mesh_node.scale.x) / 2.0
+				orbits[orbit_node] = radius
+
 
 func _input(event: InputEvent):
 	var local_pos := get_local_mouse_position()
@@ -55,13 +117,43 @@ func _input(event: InputEvent):
 			_clear_hover()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if dragged_node and !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		return_to_origin()
+		return_planet_to_placement()
 
 
-func return_to_origin():
+func find_nearest_orbit() -> OrbitNode:
+	var center := Vector3.ZERO
+	var dragged_pos := dragged_node.global_position
+	var radius := (dragged_pos - center).length()
+
+	var closest: OrbitNode = null
+	var closest_radius_diff := INF
+	var minimum_distance := 10
+
+	for o in orbits:
+		var diff: float = abs(orbits[o] - radius)
+		if diff < closest_radius_diff:
+			closest_radius_diff = diff
+			closest = o
+	
+	return closest
+
+
+func return_planet_to_placement():
 	var tween := create_tween()
+	if GameManager.is_dragging_new_planet:
+		var orbit := find_nearest_orbit()
+		if orbit and not orbit.planet:
+			orbit.planet = dragged_node
+			tween.tween_property(
+				dragged_node, 
+				"global_position", 
+				Vector3(0, 0, -orbits[orbit]), 
+				0.5
+			)
+			return
+
 	tween.tween_property(
 		dragged_node, 
 		"global_position",
@@ -82,53 +174,6 @@ func _clear_hover():
 		hovered_node.set_glow(false)
 	hovered_node = null
 
-func _ready() -> void:
-	for card in v_box_card_container.get_children():
-		card.free()
-		
-	for orbit in space_view.get_children():
-		if orbit is OrbitNode:
-			orbit.free()
-	
-	var card1 = PLANET_CARD.instantiate()
-	var planet1 = PLANET.instantiate()
-	var orbit1 = ORBIT.instantiate()
-	orbit1.orbit_distance = 1
-	planet1.planet_size_multiplier = 3
-	planet1.planet_color = Color.YELLOW
-	orbit1.planet = planet1
-	card1.planet = planet1
-	card1.planet_name = "Pianeta1"
-	v_box_card_container.add_child(card1)
-	space_view.add_child(orbit1)
-	
-	var card2 = PLANET_CARD.instantiate()
-	var planet2 = PLANET.instantiate()
-	var orbit2 = ORBIT.instantiate()
-	orbit2.orbit_distance = 2
-	planet2.planet_size_multiplier = 2
-	planet2.planet_color = Color.INDIAN_RED
-	orbit2.planet = planet2
-	card2.planet = planet2
-	card2.planet_name = "Pianeta2"
-	v_box_card_container.add_child(card2)
-	space_view.add_child(orbit2)
-	
-	
-	var card3 = PLANET_CARD.instantiate()
-	var planet3 = PLANET.instantiate()
-	var orbit3 = ORBIT.instantiate()
-	var orbit4 = ORBIT.instantiate()
-	orbit3.orbit_distance = 3
-	orbit4.orbit_distance = 4
-	planet3.planet_size_multiplier = 4
-	planet3.planet_color = Color.SKY_BLUE
-	card3.planet = planet3
-	card3.planet_name = "Pianeta3"
-	orbit4.planet=planet3
-	v_box_card_container.add_child(card3)
-	space_view.add_child(orbit3)
-	space_view.add_child(orbit4)
 
 
 func _on_step_button_pressed() -> void:

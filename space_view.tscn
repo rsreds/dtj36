@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cyjsuudmlnffw"]
 
-[ext_resource type="Environment" uid="uid://b5jnsa07afmq6" path="res://space_environment.tres" id="1_5aonc"]
+[ext_resource type="Environment" uid="uid://c1eqfdnloqq4w" path="res://space_environment.tres" id="1_5aonc"]
 [ext_resource type="PackedScene" uid="uid://ocr3reh1hduq" path="res://orbit.tscn" id="2_dl0fr"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_v0ycd"]

@@ -33,3 +33,4 @@ version_control/autoload_on_startup=true
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+global_illumination/vsync/vsync_mode=1
