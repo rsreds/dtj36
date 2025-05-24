@@ -5,13 +5,20 @@ extends Node
 
 var planet_list: PlanetList
 
-var planet_to_node_map: Dictionary[PlanetData, Node]
+var planet_to_node_map: Dictionary[PlanetData, PlanetNode]
+
 
 func next_turn() -> void:
 	planet_list.step_all()
 
 
-func draft_new_planet(new_planet_data: PlanetData) -> void:
+func generate_new_planet() -> Dictionary[PlanetData, PlanetNode]:
+	var node := PlanetNode.new()
+	var data := PlanetData.generate_new()
+	return {data: node}
+
+
+func draft_planet(new_planet_data: PlanetData) -> void:
 	planet_list.draft_planet(new_planet_data)
 
 

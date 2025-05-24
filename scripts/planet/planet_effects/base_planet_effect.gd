@@ -1,6 +1,8 @@
 class_name BasePlanetEffect
 extends RefCounted
 
+var name: String
+var description: String
 
 ## on_drafted()
 ##

@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://ce4w7q6ulqodm"]
+[gd_scene load_steps=3 format=3 uid="uid://ce4w7q6ulqodm"]
 
+[ext_resource type="Script" uid="uid://6e3j164cfuct" path="res://space_view.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cyjsuudmlnffw" path="res://space_view.tscn" id="1_ig7tw"]
 
 [node name="Node2D" type="Node2D"]
@@ -23,6 +24,8 @@ anchor_bottom = 1.0
 offset_right = 797.0
 offset_bottom = 647.0
 grow_vertical = 2
+mouse_filter = 0
+script = ExtResource("1_0xm2m")
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/Container/SubViewportContainer"]
 handle_input_locally = false
