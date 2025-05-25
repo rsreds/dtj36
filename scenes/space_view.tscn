@@ -32,21 +32,16 @@ environment = ExtResource("1_5aonc")
 [node name="Orbit1" parent="." instance=ExtResource("2_dl0fr")]
 
 [node name="Orbit2" parent="." instance=ExtResource("2_dl0fr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 orbit_distance = 2
 
 [node name="Orbit3" parent="." instance=ExtResource("2_dl0fr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 orbit_distance = 3
 
 [node name="Orbit4" parent="." instance=ExtResource("2_dl0fr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 orbit_distance = 4
 
 [node name="Orbit5" parent="." instance=ExtResource("2_dl0fr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 orbit_distance = 5
 
 [node name="Orbit6" parent="." instance=ExtResource("2_dl0fr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 orbit_distance = 6

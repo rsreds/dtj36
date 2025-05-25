@@ -46,3 +46,6 @@ text = "Planet"
 [node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Planet"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

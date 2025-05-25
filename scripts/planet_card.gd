@@ -10,8 +10,6 @@ const PLANET = preload("res://scenes/planet.tscn")
 @onready var effect_label: Label = $HBoxContainer/VBoxContainer/Label3
 
 var ROTATION_SPEED : float = 0.1
-var dragging = false
-
 
 func _ready() -> void:
 	if planet is not PlanetNode:
@@ -28,15 +26,22 @@ func _ready() -> void:
 	]
 	effect_label.text = "%s: %s" % [planet.current_effects[0].name, planet.current_effects[0].description]
 
-
 func _physics_process(delta: float) -> void:
 	planet.planet_mesh.rotate(Vector3(0, 1, 0), ROTATION_SPEED * delta)
 
-
 func _gui_input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			print("Clicked")
-			dragging = true
-			GameManager.start_dragging(planet)
-			GameManager.is_dragging_new_planet = true
+	if event.is_action_pressed("ui_click"):
+		print("Clicked")
+		GameManager.is_dragging = true
+		GameManager.start_dragging(planet)
+		GameManager.is_dragging_new_planet = true
+
+func _on_mouse_entered() -> void:
+	if not GameManager.is_dragging:
+		pivot_offset = Vector2(size.x, size.y/2)
+		scale = Vector2(1.05,1.1)
+
+func _on_mouse_exited() -> void:
+	if not GameManager.is_dragging:
+		pivot_offset = Vector2(size.x, size.y/2)
+		scale = Vector2(1,1)
