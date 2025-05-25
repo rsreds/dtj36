@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b72hgdns2yc0t"]
+[gd_scene load_steps=4 format=3 uid="uid://b72hgdns2yc0t"]
 
 [ext_resource type="Script" uid="uid://cwdgteedy2k5" path="res://scripts/master_audio.gd" id="1_et8jl"]
 [ext_resource type="AudioStream" uid="uid://cgbda6d7x7fcq" path="res://assets/pickupCoin.wav" id="2_w7qnx"]
+[ext_resource type="AudioStream" uid="uid://r5lybialeye0" path="res://assets/click.wav" id="3_isoxf"]
 
 [node name="Control" type="Node"]
 script = ExtResource("1_et8jl")
@@ -11,4 +12,8 @@ max_polyphony = 32
 
 [node name="PickupAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_w7qnx")
+bus = &"Pickup"
+
+[node name="ResourceAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_isoxf")
 bus = &"Pickup"

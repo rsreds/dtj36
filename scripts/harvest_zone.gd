@@ -30,8 +30,10 @@ func harvest_resources(planet:PlanetNode):
 			if crop["name"] == crop_name:
 				crop["amount"] += 1
 		var crop_icon = CROP_ICON.instantiate()
-		add_child(crop_icon)
 		crop_icon.z_index = 99
+		var texture = crop_icon.get_child(0).texture
+		set_region(crop_name, texture)
+		add_child(crop_icon)
 		var rng = RandomNumberGenerator.new()
 		var rndX = rng.randi_range(0, 5)
 		var rndY = rng.randi_range(0, 5)
@@ -44,4 +46,16 @@ func harvest_resources(planet:PlanetNode):
 	done_harvesting.emit()
 	GameManager.next_turn()
 		
-	
+func set_region(crop_name, texture: AtlasTexture) -> void:
+	var region
+	if crop_name == GameManager.crop_list[0]["name"]:
+		region = Rect2(0,0,45,46)
+	if crop_name == GameManager.crop_list[1]["name"]:
+		region = Rect2(45,0,50,45)
+	if crop_name == GameManager.crop_list[2]["name"]:
+		region = Rect2(155,2,45,45)
+	if crop_name == GameManager.crop_list[3]["name"]:
+		region = Rect2(215,0,50,50)
+	if crop_name == GameManager.crop_list[4]["name"]:
+		region = Rect2(100,0,51,52)
+	texture.region = region

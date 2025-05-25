@@ -10,10 +10,7 @@ signal step
 const SCORE_POPUP = preload("res://scenes/score_popup.tscn")
 var muted: bool = false
 
-var score: int = 0:
-	set(value):
-		score = value
-		get_tree().root.get_node("Container/SidePanel/HBoxCropContainer/Panel/VBoxContainer/Label2").text = str(value)
+var score: int = 0
 
 var total_steps: int = 50
 var current_steps:int = 0
@@ -94,10 +91,10 @@ func next_turn() -> void:
 				o.orbit_completed = false
 	current_steps += 1
 	step.emit()
+	if check_objectives():
+		win.emit()
 	if current_steps == total_steps:
-		if check_objectives():
-			win.emit()
-		else:
+		if not check_objectives():
 			lose.emit()
 	
 	
@@ -128,4 +125,7 @@ func stop_dragging():
 
 func reset():
 	current_steps = 0
+	orbits = []
+	planets = []
+	score = 0
 	

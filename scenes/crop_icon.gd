@@ -9,5 +9,6 @@ func move_to_position_and_free(target_position:Vector2):
 		0.3
 	).set_ease(Tween.EASE_OUT)
 	await tween.finished
+	MasterAudio.play_resource_sound()
 	queue_free()
 	

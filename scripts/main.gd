@@ -6,12 +6,15 @@ const PLANET_ICON = preload("res://scenes/planet_icon.tscn")
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var game_over_screen: Control = $GameOverScreen
 @onready var win_screen: Control = $WinScreen
+@onready var credit_label: Label = $SidePanel/HBoxCropContainer/Panel/VBoxContainer/Label2
 
 func _ready() -> void:
 	GameManager.connect("win",_on_win)
 	GameManager.connect("lose",_on_game_over)
 
 func _process(delta: float) -> void:
+	credit_label.text = '%s' % GameManager.score
+	
 	if Input.is_action_just_pressed("ui_cancel") and not get_tree().paused:
 		get_tree().paused = true
 		pause_screen.visible = true
