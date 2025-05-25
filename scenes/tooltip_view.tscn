@@ -1,0 +1,110 @@
+[gd_scene load_steps=11 format=3 uid="uid://cqmdb4fuyvy0t"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nkt8q"]
+load_path = "res://.godot/imported/icons.png-9638851efbee5517d4b4cd55f414e20f.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85x7r"]
+atlas = SubResource("CompressedTexture2D_nkt8q")
+region = Rect2(0, 0, 45, 46)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w8htg"]
+load_path = "res://.godot/imported/icons.png-9638851efbee5517d4b4cd55f414e20f.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xiffg"]
+atlas = SubResource("CompressedTexture2D_w8htg")
+region = Rect2(44.5, -1.5, 57, 48)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_57lc5"]
+load_path = "res://.godot/imported/icons.png-9638851efbee5517d4b4cd55f414e20f.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvvlp"]
+atlas = SubResource("CompressedTexture2D_57lc5")
+region = Rect2(99.5, 0, 51, 52)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_47v02"]
+load_path = "res://.godot/imported/icons.png-9638851efbee5517d4b4cd55f414e20f.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61c1w"]
+atlas = SubResource("CompressedTexture2D_47v02")
+region = Rect2(151.5, -4.25, 55, 53)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q82qv"]
+load_path = "res://.godot/imported/icons.png-9638851efbee5517d4b4cd55f414e20f.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp71v"]
+atlas = SubResource("CompressedTexture2D_q82qv")
+region = Rect2(214.5, -3.25, 55, 54)
+
+[node name="PanelContainer" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -526.0
+offset_bottom = -328.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Resource1_Icon" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = SubResource("AtlasTexture_85x7r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Resource1_Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "x10"
+
+[node name="Resource2_Icon" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = SubResource("AtlasTexture_xiffg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Resource2_Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "x10"
+
+[node name="Resource3_Icon" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = SubResource("AtlasTexture_lvvlp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Resource3_Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "x10"
+
+[node name="Resource4_Icon" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = SubResource("AtlasTexture_61c1w")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Resource4_Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "x10"
+
+[node name="Resource5_Icon" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = SubResource("AtlasTexture_fp71v")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Resource5_Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "x10"

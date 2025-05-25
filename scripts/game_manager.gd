@@ -16,7 +16,7 @@ var white_plants_collected: int
 var objectives: Array[Callable] = []
 
 var is_dragging: bool = false
-var is_dragging_new_planet: bool = false
+var is_hovering_planet: bool = false
 var object_being_dragged: Variant = null
 
 var orbits: Array[OrbitNode] = []

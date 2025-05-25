@@ -36,7 +36,6 @@ func _gui_input(event):
 		this_is_dragging = true
 		GameManager.is_dragging = true
 		GameManager.start_dragging(self)
-		GameManager.is_dragging_new_planet = true
 		
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("ui_click"):

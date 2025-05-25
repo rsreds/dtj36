@@ -92,10 +92,12 @@ func _process(_delta: float) -> void:
 
 func _on_mouse_entered() -> void:
 	on_planet = true
+	GameManager.is_hovering_planet = true
 	set_glow(true)
 
 
 func _on_mouse_exited() -> void:
+	GameManager.is_hovering_planet = false
 	on_planet = false
 	set_glow(false)
 
