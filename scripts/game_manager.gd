@@ -45,9 +45,8 @@ func start_dragging(information: Variant) -> void:
 
 
 func stop_dragging():
-	if object_being_dragged:
-		is_dragging = false
-		object_being_dragged = null
+	is_dragging = false
+	object_being_dragged = null
 
 func create_new_objectives() -> void:
 	var number_of_objectives: int = int(corporation_check_count / 3) + 3

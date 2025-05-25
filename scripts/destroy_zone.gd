@@ -7,7 +7,7 @@ func _process(delta: float) -> void:
 		print("Destroy!!!!!")
 		var planet = GameManager.object_being_dragged
 		GameManager.stop_dragging()
-		planet.free()
+		planet.queue_free()
 
 func _on_mouse_entered() -> void:
 	on_destroy = true
