@@ -30,24 +30,23 @@ omni_range = 15.9401
 environment = ExtResource("1_5aonc")
 
 [node name="Orbit1" parent="." instance=ExtResource("2_dl0fr")]
-transform = Transform3D(-0.603208, 0, 0.797584, 0, 1, 0, -0.797584, 0, -0.603208, 0, 0, 0)
 
 [node name="Orbit2" parent="." instance=ExtResource("2_dl0fr")]
-transform = Transform3D(-0.27228, 0, -0.962218, 0, 1, 0, 0.962218, 0, -0.27228, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 orbit_distance = 2
 
 [node name="Orbit3" parent="." instance=ExtResource("2_dl0fr")]
-transform = Transform3D(0.931691, 0, 0.363251, 0, 1, 0, -0.363251, 0, 0.931691, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 orbit_distance = 3
 
 [node name="Orbit4" parent="." instance=ExtResource("2_dl0fr")]
-transform = Transform3D(-0.851727, 0, 0.523986, 0, 1, 0, -0.523986, 0, -0.851727, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 orbit_distance = 4
 
 [node name="Orbit5" parent="." instance=ExtResource("2_dl0fr")]
-transform = Transform3D(0.450878, 0, -0.892586, 0, 1, 0, 0.892586, 0, 0.450878, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 orbit_distance = 5
 
 [node name="Orbit6" parent="." instance=ExtResource("2_dl0fr")]
-transform = Transform3D(0.0836779, 0, 0.996493, 0, 1, 0, -0.996493, 0, 0.0836779, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 orbit_distance = 6

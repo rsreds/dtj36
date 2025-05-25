@@ -10,7 +10,7 @@ const ORBIT_GAP := 0.75
 @onready var orbit_mesh: MeshInstance3D = $OrbitMesh
 @onready var collider: CollisionShape3D = $CollisionShape3D
 
-var planet: PlanetNode
+var planet: PlanetNode = null
 var starting_position := Vector3.ZERO
 
 func _ready() -> void:
@@ -32,6 +32,11 @@ func _ready() -> void:
 func step() -> void:
 	await create_tween().tween_property(self, "rotation:y", rotation.y + (PI / orbit_distance), 0.3).set_trans(Tween.TRANS_SINE)
 	#rotate(Vector3.UP, PI / orbit_distance)
+	if roundi(rotation.y) % 360 == 0: ## TODO; not correctly identifying orbit
+		if planet:
+			print("Orbited")
+			for effect in planet.current_effects:
+				effect.on_orbit(planet, PlanetManager.planet_list)
 
 
 func set_glow(val: bool) -> void:
