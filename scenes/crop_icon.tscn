@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cdrg65mfe5hv"]
 
-[ext_resource type="Script" uid="uid://bcp72ujktc1qd" path="res://scenes/crop_icon.gd" id="1_7pk4y"]
+[ext_resource type="Script" path="res://scenes/crop_icon.gd" id="1_7pk4y"]
 [ext_resource type="Texture2D" uid="uid://sspaas0xhq57" path="res://assets/icons.png" id="1_y3tpw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_muem4"]

@@ -25,12 +25,6 @@ func _process(delta: float) -> void:
 				var camera = get_viewport().get_camera_3d()
 				var icon_position = camera.unproject_position(planet.global_position)
 				
-				var label = Label.new()
-				label.position = icon_position - label.size/2
-				label.position.y -= label.size.y
-				label.text = "%s Cr." % planet.accumulated_score
-				icons_control.add_child(label)
-				
 				var region: Rect2
 				if not crop:
 					continue

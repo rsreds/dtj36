@@ -6,7 +6,10 @@ extends Node
 const SCORE_POPUP = preload("res://scenes/score_popup.tscn")
 var muted: bool = false
 
-var score: int
+var score: int = 0:
+	set(value):
+		score = value
+		get_tree().root.get_node("Container/SidePanel/HBoxCropContainer/Panel/VBoxContainer/Label2").text = str(value)
 
 var total_steps: int = 50
 var current_steps:int = 0
@@ -19,8 +22,6 @@ var blue_plants_collected: int
 var yellow_plants_collected: int
 var white_plants_collected: int
 
-var objectives: Array[Callable] = []
-
 var is_dragging: bool = false
 var is_hovering_planet: bool = false
 var object_being_dragged: Variant = null
@@ -29,7 +30,7 @@ var planet_being_hovered: PlanetNode = null
 var orbits: Array[OrbitNode] = []
 var planets: Array[PlanetNode] = []
 
-var crop_list:Array[Dictionary] = [
+var crop_list: Array[Dictionary] = [
 	{"name": "Crimson Strands", "optimal_water":0, "base_growth_rate":1, "amount":0, "objective":15},
 	{"name": "Snowsponge", "optimal_water":2, "base_growth_rate":2, "amount":0, "objective":20},
 	{"name": "Star Mangoes", "optimal_water":1, "base_growth_rate":1, "amount":0, "objective":25},
@@ -82,7 +83,15 @@ func next_turn() -> void:
 			o.planet.reset_stats()
 			for effect in o.planet.current_effects:
 				effect.on_step(o.planet, planets)
-			o.planet.accumulated_score += o.planet.current_score_per_step * (1 + (0.1 * o.orbit_distance))
+				if o.orbit_completed:
+					effect.on_orbit(o.planet, planets)
+			var mult = (1 + (0.1 * o.orbit_distance))
+			GameManager.show_point_popup("%s*%s" % [o.planet.current_score_per_step, mult], o.planet, Color.GOLDENROD)
+			o.planet.accumulated_score += o.planet.current_score_per_step * mult
+			if o.orbit_completed:
+				score += o.planet.accumulated_score
+				o.planet.accumulated_score = 0
+				o.orbit_completed = false
 	current_steps += 1
 
 func draft_planet(new_planet_data: PlanetNode, orbit: OrbitNode) -> void:

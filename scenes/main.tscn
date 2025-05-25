@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dw6svdvxr66ad" path="res://scenes/space_tooltip.tscn" id="11_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://cqmdb4fuyvy0t" path="res://scenes/tooltip_view.tscn" id="12_eb6dy"]
 [ext_resource type="Script" uid="uid://ddubkka3fvwh2" path="res://scripts/pause_screen.gd" id="13_trceg"]
-[ext_resource type="Script" uid="uid://da3uv8kd04ug4" path="res://scripts/game_over_screen.gd" id="14_a8y0u"]
+[ext_resource type="Script" path="res://scripts/game_over_screen.gd" id="14_a8y0u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya4ey"]
 bg_color = Color(0.996078, 0, 0, 0.45098)

@@ -12,6 +12,7 @@ const ORBIT_GAP := 0.75
 
 var planet: PlanetNode = null
 var on_orbit: bool = false
+var orbit_completed: bool = false
 
 func _ready() -> void:
 	var distance := ORBIT_MARGIN + orbit_distance * ORBIT_GAP
@@ -31,6 +32,9 @@ func _ready() -> void:
 
 func step() -> void:
 	if has_planets():
+		if roundi(rad_to_deg(rotation.y + PI / (orbit_distance * 2))) % 360 == 0:
+			orbit_completed = true
+			
 		var tween = create_tween()
 		tween.tween_property(
 			self,
@@ -40,6 +44,7 @@ func step() -> void:
 		).set_trans(
 			Tween.TRANS_SINE
 		)
+		
 
 func has_planets():
 	return planet_marker.get_child_count() > 0
