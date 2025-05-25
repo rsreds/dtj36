@@ -90,7 +90,7 @@ func draft_planet(new_planet_data: PlanetNode, orbit: OrbitNode) -> void:
 
 func get_nearby_planets(planet: PlanetNode) -> Array[PlanetNode]:
 	var p: Array[PlanetNode]
-	p.assign(planets.filter(
+	p.assign(planets.filter(func (x): return x != null).filter(
 		func (p: PlanetNode): 
 			return planet != p and planet.global_position.distance_to(p.global_position) <= planet.current_effects_range  
 	))

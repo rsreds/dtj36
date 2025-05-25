@@ -1,14 +1,16 @@
 extends HBoxContainer
 
-var shown_position:Vector2 = Vector2(0,548)
-var hidden_position:Vector2 = Vector2(0,648)
+var hidden_position: Vector2
 @onready var harvest_panel: Panel = $HarvestPanel
+
+func _ready() -> void:
+	hidden_position = position
 
 func anim_show() -> void:
 	var tween:Tween = create_tween()
 	tween.tween_property(self,
-	"position",
-	shown_position,
+	"position:y",
+	hidden_position.y - 100,
 	0.3).set_ease(Tween.EASE_IN_OUT)
 
 func anim_hide() -> void:
@@ -16,8 +18,8 @@ func anim_hide() -> void:
 		await harvest_panel.done_harvesting
 	var tween:Tween = create_tween()
 	tween.tween_property(self,
-	"position",
-	hidden_position,
+	"position:y",
+	hidden_position.y,
 	0.3).set_ease(Tween.EASE_IN_OUT)
 
 
