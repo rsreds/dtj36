@@ -20,6 +20,7 @@ var is_being_dragged := false
 var drag_offset := Vector3.ZERO
 var original_position := Vector3.ZERO
 var crop: Crop
+var orbit: OrbitNode
 
 var base_types: Array[PlanetType]
 var current_types: Array[PlanetType]
@@ -85,11 +86,13 @@ func _process(_delta: float) -> void:
 func _on_mouse_entered() -> void:
 	on_planet = true
 	GameManager.is_hovering_planet = true
+	GameManager.planet_being_hovered = self
 	set_glow(true)
 
 
 func _on_mouse_exited() -> void:
 	GameManager.is_hovering_planet = false
+	GameManager.planet_being_hovered = null
 	on_planet = false
 	set_glow(false)
 
@@ -108,9 +111,10 @@ func reset_stats() -> void:
 	current_water_content = base_water_content
 
 
-func draft(orbit: OrbitNode) -> void:
+func draft(o: OrbitNode) -> void:
 	camera = get_viewport().get_camera_3d()
-	GameManager.draft_planet(GameManager.object_being_dragged.planet, orbit)
+	orbit = o
+	GameManager.draft_planet(GameManager.object_being_dragged.planet, o)
 
 
 func clone() -> PlanetNode:

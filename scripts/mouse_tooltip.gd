@@ -12,8 +12,11 @@ func _process(delta: float) -> void:
 			texture_rect.visible = false
 			sub_viewport_container.visible = false
 		else:
+			var p := GameManager.planet_being_hovered
 			visible = true
 			tooltip_view.visible = true
+			tooltip_view.get_node("VBoxContainer/WaterContent").text = "Water Content: %s" % p.current_water_content
+			tooltip_view.get_node("VBoxContainer/Temperature").text = "Temperature: %s" % p.orbit.orbit_distance 
 		
 	if Input.is_action_just_pressed("ui_click"):
 		if GameManager.object_being_dragged is PlanetCard:
@@ -38,6 +41,7 @@ func _process(delta: float) -> void:
 	else:
 		var mouse_position = get_global_mouse_position()
 		position = mouse_position
+
 
 func set_region(texture: AtlasTexture) -> void:
 	var crop_info = GameManager.object_being_dragged

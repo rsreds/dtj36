@@ -8,14 +8,15 @@ func _ready() -> void:
 	else:
 		sound_button.text = "Sound: ON"
 
+
 func _on_resume_pressed() -> void:
 	get_tree().paused = false
 	visible = false
 
+
 func _on_back_to_title_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-
 
 
 func _on_sound_pressed() -> void:
