@@ -62,11 +62,11 @@ func _ready() -> void:
 func check_objectives() -> bool:
 	return level_list[level].all(func (o): return o.function.call())
 
-
-func show_point_popup(text: String, planet: PlanetNode):
+func show_point_popup(text:String, planet: PlanetNode, text_color:Color = Color.WHITE):
 	var camera = get_viewport().get_camera_3d()
 	var point = SCORE_POPUP.instantiate()
 	point.text = text
+	point.color = text_color
 	point.position = camera.unproject_position(planet.global_position)
 	get_tree().root.add_child(point)
 	await point.done
