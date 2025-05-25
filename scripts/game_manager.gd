@@ -3,6 +3,7 @@
 ## Controls objectives and resource values, plus calls on delegate managers to perform actions
 extends Node
 
+const SCORE_POPUP = preload("res://scenes/score_popup.tscn")
 var muted: bool = false
 
 var score: int
@@ -60,6 +61,13 @@ func _ready() -> void:
 
 func check_objectives() -> bool:
 	return level_list[level].all(func (o): return o.function.call())
+
+func show_point_popup(text:String, planet: PlanetNode):
+	var camera = get_viewport().get_camera_3d()
+	var point = SCORE_POPUP.instantiate()
+	point.text = text
+	point.position = camera.unproject_position(planet.global_position)
+	get_tree().root.add_child(point)
 
 
 func next_turn() -> void:
