@@ -110,7 +110,7 @@ func _return_to_place() -> void:
 
 func draft() -> void:
 	camera = get_viewport().get_camera_3d()
-	PlanetManager.draft_planet(GameManager.object_being_dragged)
+	PlanetManager.draft_planet(GameManager.object_being_dragged.planet)
 
 
 static func generate_new() -> PlanetNode:

@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://dw6svdvxr66ad"]
+
+[sub_resource type="Gradient" id="Gradient_choun"]
+colors = PackedColorArray(0, 0, 0.15, 1, 0.1, 0.0469, 0.041, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ya4ey"]
+gradient = SubResource("Gradient_choun")
+fill = 1
+fill_from = Vector2(0.478632, 0.512821)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_eb6dy"]
+panorama = SubResource("GradientTexture2D_ya4ey")
+
+[sub_resource type="Sky" id="Sky_trceg"]
+sky_material = SubResource("PanoramaSkyMaterial_eb6dy")
+
+[sub_resource type="Environment" id="Environment_a8y0u"]
+background_mode = 2
+sky = SubResource("Sky_trceg")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.5
+ambient_light_energy = 0.2
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="World3D" id="World3D_jkv2x"]
+resource_local_to_scene = true
+environment = SubResource("Environment_a8y0u")
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewPort" type="SubViewport" parent="."]
+own_world_3d = true
+world_3d = SubResource("World3D_jkv2x")
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(80, 80)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewPort"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewPort"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.00237)

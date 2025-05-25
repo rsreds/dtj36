@@ -1,3 +1,4 @@
+class_name PlanetCard
 extends PanelContainer
 
 const PLANET = preload("res://scenes/planet.tscn")
@@ -32,10 +33,9 @@ func _physics_process(delta: float) -> void:
 
 func _gui_input(event):
 	if event.is_action_pressed("ui_click"):
-		print("Draggin planet card")
 		this_is_dragging = true
 		GameManager.is_dragging = true
-		GameManager.start_dragging(planet)
+		GameManager.start_dragging(self)
 		GameManager.is_dragging_new_planet = true
 		
 func _process(delta: float) -> void:

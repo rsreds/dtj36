@@ -37,7 +37,6 @@ func next_turn() -> void:
 	for o in orbits:
 		o.step()
 
-
 func start_dragging(information: Variant) -> void:
 	is_dragging = true
 	object_being_dragged = information
@@ -47,7 +46,6 @@ func stop_dragging():
 	if object_being_dragged:
 		is_dragging = false
 		object_being_dragged = null
-
 
 func create_new_objectives() -> void:
 	var number_of_objectives: int = int(corporation_check_count / 3) + 3

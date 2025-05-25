@@ -61,7 +61,7 @@ func reset_alpha() -> void:
 func _on_mouse_entered() -> void:
 	on_orbit=true
 	reset_alpha()
-	if GameManager.is_dragging and GameManager.object_being_dragged is PlanetNode and GameManager.is_dragging_new_planet:
+	if GameManager.is_dragging and GameManager.object_being_dragged is PlanetCard:
 		set_alpha(0.75)
 		set_glow(true)
 
@@ -76,12 +76,9 @@ func _on_mouse_exited() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("ui_click") and on_orbit:
-		if GameManager.is_dragging and GameManager.object_being_dragged is PlanetNode and GameManager.is_dragging_new_planet and not has_planets():
+		if GameManager.is_dragging and GameManager.object_being_dragged is PlanetCard and not has_planets():
 			set_glow(false)
-			GameManager.is_dragging_new_planet = false
-
-			var dragged_planet = GameManager.object_being_dragged
-			planet = dragged_planet.duplicate()
+			var planet = GameManager.object_being_dragged.planet.duplicate()
 			planet_marker.add_child(planet)
-			dragged_planet.draft()
+			planet.draft()
 			GameManager.stop_dragging()

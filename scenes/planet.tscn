@@ -52,7 +52,6 @@ albedo_color = Color(1, 1, 1, 0.219608)
 rim_tint = 1.0
 
 [node name="Planet" type="StaticBody3D"]
-process_priority = 1
 script = ExtResource("1_cktii")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
