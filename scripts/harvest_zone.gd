@@ -22,7 +22,6 @@ func _on_mouse_exited() -> void:
 func harvest_resources(planet:PlanetNode):
 	harvesting = true
 	var amount = planet.crop_amount
-	amount = 10
 	var crop_name = planet.crop.name
 	var target_position = Vector2(1000,600)
 	planet.crop = null
@@ -43,5 +42,6 @@ func harvest_resources(planet:PlanetNode):
 	harvesting = false
 	await get_tree().create_timer(0.5).timeout
 	done_harvesting.emit()
+	GameManager.next_turn()
 		
 	
