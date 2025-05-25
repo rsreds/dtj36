@@ -25,6 +25,7 @@ func harvest_resources(planet:PlanetNode):
 	amount = 10
 	var crop_name = planet.crop.name
 	var target_position = Vector2(1000,600)
+	planet.crop = null
 	for i in range(amount):
 		for crop in GameManager.crop_list:
 			if crop["name"] == crop_name:
