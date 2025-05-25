@@ -5,16 +5,6 @@ extends Node
 
 var planet_list: PlanetList = PlanetList.new()
 
-func next_turn() -> void:
-	planet_list.step_all()
-
-
-func draft_planet(new_planet_data: PlanetNode, orbit: OrbitNode) -> void:
-	planet_list.draft_planet(new_planet_data, orbit)
-	print("Drafted %s" % new_planet_data)
-	GameManager.next_turn()
-
-
 func get_nearby_planets(planet: PlanetNode) -> Array[PlanetNode]:
 	var nearby: Array[PlanetNode] = []
 

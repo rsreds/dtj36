@@ -5,7 +5,9 @@ var planets: Dictionary[OrbitNode, PlanetNode]
 
 
 func step_all():
+	print(planets)
 	for planet in planets.values():
+		planet.reset_stats()
 		for effect in planet.current_effects:
 			effect.on_step(planet, self)
 
@@ -20,9 +22,3 @@ func trigger_all():
 	for planet in planets.values():
 		for effect in planet.current_effects:
 			effect.on_trigger(planet, self)
-
-
-func draft_planet(planet: PlanetNode, orbit: OrbitNode):
-	planets[orbit] = planet
-	for effect in planet.current_effects:
-		effect.on_drafted(planet, self)

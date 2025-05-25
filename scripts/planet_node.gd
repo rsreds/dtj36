@@ -43,7 +43,7 @@ var base_crop_growth_multiplier := 1.0
 var current_crop_growth_multiplier := 1.0
 var crop_amount := 0
 
-var on_planet:bool = false
+var on_planet: bool = false
 
 func _ready() -> void:
 	var size = MIN_SIZE + planet_size_multiplier * DEFAULT_SIZE
@@ -51,7 +51,6 @@ func _ready() -> void:
 	material.albedo_color = planet_color
 	range_mesh.get_surface_override_material(0).albedo_color = Color(planet_color.r, planet_color.g, planet_color.b, 0.33)
 	range_mesh.mesh.top_radius = float(base_effects_range / 20)
-
 
 func _process(_delta: float) -> void:
 	if is_being_dragged:
@@ -103,9 +102,44 @@ func _return_to_place() -> void:
 	create_tween().tween_property(self, "global_position", original_position, 0.3).set_trans(Tween.TRANS_SPRING)
 
 
+func reset_stats() -> void:
+	current_crop_growth_multiplier = base_crop_growth_multiplier
+	current_score_per_step = base_score_per_step
+	current_water_content = base_water_content
+
+
 func draft(orbit: OrbitNode) -> void:
 	camera = get_viewport().get_camera_3d()
-	PlanetManager.draft_planet(GameManager.object_being_dragged.planet, orbit)
+	GameManager.draft_planet(GameManager.object_being_dragged.planet, orbit)
+
+
+func clone() -> PlanetNode:
+	var instance := PLANET_SCENE.instantiate() as PlanetNode
+	
+	instance.name = name
+	
+	instance.planet_color = planet_color
+	instance.planet_size_multiplier = planet_size_multiplier
+
+	instance.base_types = base_types
+	instance.current_types = instance.base_types.duplicate(true)
+
+	instance.base_effects = base_effects
+	instance.current_effects = instance.base_effects.duplicate(true)
+
+	instance.base_effects_range = base_effects_range
+	instance.current_effects_range = instance.base_effects_range
+
+	instance.base_water_content = base_water_content
+	instance.current_water_content = instance.base_water_content
+	
+	instance.base_crop_growth_multiplier = base_crop_growth_multiplier
+	instance.current_crop_growth_multiplier = instance.base_crop_growth_multiplier
+	
+	instance.base_score_per_step = base_score_per_step
+	instance.current_score_per_step = instance.base_score_per_step
+	
+	return instance
 
 
 static func generate_new() -> PlanetNode:

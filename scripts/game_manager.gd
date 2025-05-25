@@ -35,9 +35,22 @@ func _ready() -> void:
 	create_new_objectives()
 
 func next_turn() -> void:
-	PlanetManager.next_turn()
+	var planets: Array[PlanetNode]
+	planets.assign(orbits.map(func (o): return o.planet).filter(func (p): return p != null))
 	for o in orbits:
 		o.step()
+		if o.planet:
+			for effect in o.planet.current_effects:
+				effect.on_step(o.planet, planets)
+
+
+func draft_planet(new_planet_data: PlanetNode, orbit: OrbitNode) -> void:
+	var planets: Array[PlanetNode]
+	planets.assign(orbits.map(func (o): return o.planet).filter(func (p): return p != null))
+	for effect in new_planet_data.current_effects:
+		effect.on_drafted(new_planet_data, planets)
+	next_turn()
+
 
 func start_dragging(information: Variant) -> void:
 	is_dragging = true

@@ -1,10 +1,11 @@
 class_name PlanetCard
 extends PanelContainer
 
-const PLANET = preload("res://scenes/planet.tscn")
-
 @export var planet: PlanetNode:
 	set(value):
+		if value == null:
+			planet.queue_free()
+
 		planet = value
 		if planet:
 			sub_view_port.add_child(planet)
@@ -13,9 +14,9 @@ const PLANET = preload("res://scenes/planet.tscn")
 				planet.current_types[0], planet.current_score_per_step, planet.current_water_content, 
 				planet.current_effects_range, planet.current_crop_growth_multiplier
 			]
-			effect_label.text = "%s" % [planet.current_effects[0].name]
+			effect_label.text = "%s" % planet.current_effects[0].name
 			tooltip_text = "%s: %s" % planet.current_effects[0].description
-			
+
 @onready var sub_view_port: SubViewport = $HBoxContainer/SubViewportContainer/SubViewPort
 @onready var name_label: Label = $HBoxContainer/VBoxContainer/Label
 @onready var stats_label: Label = $HBoxContainer/VBoxContainer/Label2
@@ -24,7 +25,9 @@ const PLANET = preload("res://scenes/planet.tscn")
 var this_is_dragging: bool = false
 var ROTATION_SPEED : float = 0.1
 
-	
+func _ready() -> void:
+	planet = DeckManager.pop_top_planet()
+
 func _physics_process(delta: float) -> void:
 	if planet:
 		planet.planet_mesh.rotate(Vector3(0, 1, 0), ROTATION_SPEED * delta)

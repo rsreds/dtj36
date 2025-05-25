@@ -9,7 +9,7 @@ var description: String
 ## When a planet is added to the PlanetList, this func fires.
 ## `parent_planet` is the planet with this effect.
 ## The `planet_list` PlanetList can be used for adjaceny effects etc.
-func on_drafted(parent_planet: PlanetNode, planet_list: PlanetList) -> void:
+func on_drafted(parent_planet: PlanetNode, planet_list: Array[PlanetNode]) -> void:
 	pass
 
 
@@ -18,7 +18,7 @@ func on_drafted(parent_planet: PlanetNode, planet_list: PlanetList) -> void:
 ## When a planet completes a step, this func fires.
 ## `parent_planet` is the planet with this effect.
 ## The `planet_list` PlanetList can be used for adjaceny effects etc.
-func on_step(parent_planet: PlanetNode, planet_list: PlanetList) -> void:
+func on_step(parent_planet: PlanetNode, planet_list: Array[PlanetNode]) -> void:
 	pass
 
 
@@ -27,7 +27,7 @@ func on_step(parent_planet: PlanetNode, planet_list: PlanetList) -> void:
 ## When a planet completes an orbit, this func fires.
 ## `parent_planet` is the planet with this effect.
 ## The `planet_list` PlanetList can be used for adjaceny effects etc.
-func on_orbit(parent_planet: PlanetNode, planet_list: PlanetList) -> void:
+func on_orbit(parent_planet: PlanetNode, planet_list: Array[PlanetNode]) -> void:
 	pass
 
 
@@ -36,5 +36,5 @@ func on_orbit(parent_planet: PlanetNode, planet_list: PlanetList) -> void:
 ## When a planet is given some arbitrary effect trigger, this func fires.
 ## `parent_planet` is the planet with this effect.
 ## The `planet_list` PlanetList can be used for adjaceny effects etc.
-func on_trigger(parent_planet: PlanetNode, planet_list: PlanetList) -> void:
+func on_trigger(parent_planet: PlanetNode, planet_list: Array[PlanetNode]) -> void:
 	pass

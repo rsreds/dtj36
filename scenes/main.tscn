@@ -1,11 +1,11 @@
 [gd_scene load_steps=24 format=3 uid="uid://ce4w7q6ulqodm"]
 
-[ext_resource type="Script" uid="uid://t5f8rleex6tx" path="res://scripts/main.gd" id="1_a8y0u"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://cyjsuudmlnffw" path="res://scenes/space_view.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ch34qo7d3y7q" path="res://scenes/planet_card.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://bny7ddafrjbv2" path="res://scripts/destroy_zone.gd" id="2_tefeu"]
 [ext_resource type="Script" uid="uid://c1t2g5oykjn01" path="res://fps_label.gd" id="3_h2yge"]
-[ext_resource type="Script" uid="uid://e5ojvsc1rdk4" path="res://scripts/tool_container.gd" id="3_jkv2x"]
+[ext_resource type="Script" path="res://scripts/tool_container.gd" id="3_jkv2x"]
 [ext_resource type="Script" uid="uid://bkphgw6tq0sdp" path="res://scripts/fertilise_zone.gd" id="3_tipki"]
 [ext_resource type="Script" uid="uid://43c7fa0m426h" path="res://scripts/harvest_zone.gd" id="4_85g3d"]
 [ext_resource type="Script" uid="uid://c455f22dm0s3a" path="res://scripts/plant/crop.gd" id="4_lquwl"]

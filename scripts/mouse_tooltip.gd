@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("ui_click"):
 		if GameManager.object_being_dragged is PlanetCard:
-			var new_planet:PlanetNode = GameManager.object_being_dragged.planet.duplicate()
+			var new_planet: PlanetNode = GameManager.object_being_dragged.planet.duplicate()
 			new_planet.position = Vector3.ZERO
 			sub_viewport_container.free()
 			sub_viewport_container = SPACE_TOOLTIP.instantiate()
