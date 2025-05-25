@@ -86,6 +86,8 @@ func next_turn() -> void:
 			var mult = (1 + (0.1 * o.orbit_distance))
 			GameManager.show_point_popup("%s*%s" % [o.planet.current_score_per_step, mult], o.planet, Color.GOLDENROD)
 			o.planet.accumulated_score += o.planet.current_score_per_step * mult
+			if o.planet.crop:
+				o.planet.crop_amount += o.planet.crop.base_growth_rate * o.planet.current_crop_growth_multiplier
 			if o.orbit_completed:
 				score += o.planet.accumulated_score
 				o.planet.accumulated_score = 0

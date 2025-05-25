@@ -17,7 +17,9 @@ func _process(delta: float) -> void:
 				visible = true
 				tooltip_view.visible = true
 				tooltip_view.get_node("VBoxContainer/WaterContent").text = "Water Content: %s" % p.current_water_content
-				tooltip_view.get_node("VBoxContainer/Temperature").text = "Temperature: %s" % p.orbit.orbit_distance 
+				tooltip_view.get_node("VBoxContainer/Temperature").text = "Temperature: %s" % p.orbit.orbit_distance
+				tooltip_view.get_node("VBoxContainer/Effect").text = "%s: %s" % [p.current_effects[0].name, p.current_effects[0].description]
+				tooltip_view.get_node("VBoxContainer/Score").text = "Score: %s (%s*%s)" % [p.accumulated_score, p.current_score_per_step, 1 + (0.1 * p.orbit.orbit_distance)]
 
 	if Input.is_action_just_pressed("ui_click"):
 		if GameManager.object_being_dragged is PlanetCard:
