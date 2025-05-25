@@ -153,7 +153,7 @@ static func generate_new() -> PlanetNode:
 	instance.base_types = [PlanetType.values().pick_random()]
 	instance.current_types = instance.base_types.duplicate()
 
-	instance.base_effects = [HydratingPlanetEffect.new()]
+	instance.base_effects = [EffectsRegistry.get_random_effect()]
 	instance.current_effects = instance.base_effects.duplicate()
 
 	instance.base_effects_range = randi_range(1, 6)

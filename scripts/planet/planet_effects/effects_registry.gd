@@ -1,6 +1,10 @@
 class_name EffectsRegistry
 extends Node
 
-const effects = {
-	"fertilised": ResetStates
+static var effects = {
+	"hydrated": HydratingPlanetEffect,
+	"plutonic": PlutonicPlanetEffect
 }
+
+static func get_random_effect() -> BasePlanetEffect:
+	return effects.values().pick_random().new()
