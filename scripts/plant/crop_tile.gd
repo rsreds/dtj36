@@ -41,8 +41,7 @@ func _process(delta: float) -> void:
 	for crop in GameManager.crop_list:
 		if crop_info.name == crop['name']:
 			amount = crop['amount']
-			objective = crop['objective']
-	label.text = "x%d/%d" % [amount,objective]
+	label.text = "x%d" % [amount]
 
 func _on_mouse_entered() -> void:
 	if not GameManager.is_dragging:

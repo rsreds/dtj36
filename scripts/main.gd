@@ -5,11 +5,13 @@ const PLANET_ICON = preload("res://scenes/planet_icon.tscn")
 @onready var icons_control: Control = $Icons
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var game_over_screen: Control = $GameOverScreen
+@onready var win_screen: Control = $WinScreen
+
+func _ready() -> void:
+	GameManager.connect("win",_on_win)
+	GameManager.connect("lose",_on_game_over)
 
 func _process(delta: float) -> void:
-	progress_bar.max_value = GameManager.total_steps
-	progress_bar.value = GameManager.current_steps
-	
 	if Input.is_action_just_pressed("ui_cancel") and not get_tree().paused:
 		get_tree().paused = true
 		pause_screen.visible = true
@@ -45,8 +47,10 @@ func _process(delta: float) -> void:
 				texture.region = region
 				icons_control.add_child(new_icon)
 				
-func _on_progress_bar_value_changed(value: float) -> void:
-	if progress_bar.value >= progress_bar.max_value:
-		if not GameManager.check_objectives():
-			get_tree().paused = true
-			game_over_screen.visible = true
+func _on_game_over()->void:
+	get_tree().paused = true
+	game_over_screen.visible = true
+
+func _on_win()->void:
+	get_tree().paused = true
+	win_screen.visible = true

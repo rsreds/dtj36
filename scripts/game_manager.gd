@@ -3,6 +3,10 @@
 ## Controls objectives and resource values, plus calls on delegate managers to perform actions
 extends Node
 
+signal win
+signal lose
+signal step
+
 const SCORE_POPUP = preload("res://scenes/score_popup.tscn")
 var muted: bool = false
 
@@ -16,12 +20,6 @@ var current_steps:int = 0
 
 var level: int = 0
 
-var green_plants_collected: int
-var red_plants_collected: int
-var blue_plants_collected: int
-var yellow_plants_collected: int
-var white_plants_collected: int
-
 var is_dragging: bool = false
 var is_hovering_planet: bool = false
 var object_being_dragged: Variant = null
@@ -31,11 +29,11 @@ var orbits: Array[OrbitNode] = []
 var planets: Array[PlanetNode] = []
 
 var crop_list: Array[Dictionary] = [
-	{"name": "Crimson Strands", "optimal_water":0, "base_growth_rate":1, "amount":0, "objective":15},
-	{"name": "Snowsponge", "optimal_water":2, "base_growth_rate":2, "amount":0, "objective":20},
-	{"name": "Star Mangoes", "optimal_water":1, "base_growth_rate":1, "amount":0, "objective":25},
-	{"name": "Soylent Greens", "optimal_water":0, "base_growth_rate":1, "amount":0, "objective":10},
-	{"name": "Sprinks", "optimal_water":0, "base_growth_rate":1, "amount":0, "objective":5}
+	{"name": "Crimson Strands", "optimal_water":0, "base_growth_rate":1, "amount":0},
+	{"name": "Snowsponge", "optimal_water":2, "base_growth_rate":2, "amount":0},
+	{"name": "Star Mangoes", "optimal_water":1, "base_growth_rate":1, "amount":0},
+	{"name": "Soylent Greens", "optimal_water":0, "base_growth_rate":1, "amount":0},
+	{"name": "Sprinks", "optimal_water":0, "base_growth_rate":1, "amount":0}
 ]
 
 var level_list = [
@@ -44,17 +42,17 @@ var level_list = [
 	],
 	[
 		Objective.new("Earn 2000 credits", func (): return score >= 2000), 
-		Objective.new("Harvest 20 Crimson Strands", func (): return red_plants_collected >= 20)
+		Objective.new("Harvest 20 Crimson Strands", func (): return crop_list[0]['amount'] >= 20)
 	],
 	[
 		Objective.new("Earn 3000 credits", func (): return score >= 3000), 
 		Objective.new("Have 4 planets", func (): return len(planets) >= 4),
-		Objective.new("Harvest 10 of each plant", func (): return red_plants_collected >= 10 and green_plants_collected >= 10 and white_plants_collected >= 10),
+		Objective.new("Harvest 10 of each plant", func (): return crop_list[0]['amount'] >= 10 and crop_list[3]['amount'] >= 10 and crop_list[1]['amount'] >= 10),
 	],
 	[
 		Objective.new("Earn 4000 credits", func (): return score >= 3000), 
 		Objective.new("Have 6 planets", func (): return len(planets) >= 4),
-		Objective.new("Harvest 20 of each plant", func (): return red_plants_collected >= 20 and green_plants_collected >= 20 and white_plants_collected >= 20 and blue_plants_collected >= 20 and yellow_plants_collected >= 20),
+		Objective.new("Harvest 20 of each plant", func (): return crop_list[0]['amount'] >= 20 and crop_list[3]['amount'] >= 20 and crop_list[1]['amount'] >= 20 and crop_list[4]['amount'] >= 20 and crop_list[2]['amount'] >= 20),
 	],
 ]
 
@@ -93,7 +91,14 @@ func next_turn() -> void:
 				o.planet.accumulated_score = 0
 				o.orbit_completed = false
 	current_steps += 1
-
+	step.emit()
+	if current_steps == total_steps:
+		if check_objectives():
+			win.emit()
+		else:
+			lose.emit()
+	
+	
 func draft_planet(new_planet_data: PlanetNode, orbit: OrbitNode) -> void:
 	planets.assign(orbits.map(func (o): return o.planet).filter(func (p): return p != null))
 	for effect in new_planet_data.current_effects:
@@ -118,3 +123,7 @@ func start_dragging(information: Variant) -> void:
 func stop_dragging():
 	is_dragging = false
 	object_being_dragged = null
+
+func reset():
+	current_steps = 0
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ce4w7q6ulqodm"]
+[gd_scene load_steps=25 format=3 uid="uid://ce4w7q6ulqodm"]
 
 [ext_resource type="Script" uid="uid://t5f8rleex6tx" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://cyjsuudmlnffw" path="res://scenes/space_view.tscn" id="1_ig7tw"]
@@ -13,7 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dw6svdvxr66ad" path="res://scenes/space_tooltip.tscn" id="11_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://cqmdb4fuyvy0t" path="res://scenes/tooltip_view.tscn" id="12_eb6dy"]
 [ext_resource type="Script" uid="uid://ddubkka3fvwh2" path="res://scripts/pause_screen.gd" id="13_trceg"]
-[ext_resource type="Script" path="res://scripts/game_over_screen.gd" id="14_a8y0u"]
+[ext_resource type="Script" uid="uid://da3uv8kd04ug4" path="res://scripts/game_over_screen.gd" id="14_a8y0u"]
+[ext_resource type="Script" uid="uid://fevuinq35a0a" path="res://scripts/progress_bar.gd" id="15_jkv2x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya4ey"]
 bg_color = Color(0.996078, 0, 0, 0.45098)
@@ -352,6 +353,53 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Back to Title"
 
+[node name="WinScreen" type="Control" parent="."]
+process_mode = 2
+visible = false
+z_index = 99
+z_as_relative = false
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_a8y0u")
+
+[node name="Panel" type="Panel" parent="WinScreen"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinScreen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -74.5
+offset_right = 87.0
+offset_bottom = 74.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="WinScreen/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Congratulations!"
+horizontal_alignment = 1
+
+[node name="Back to Title" type="Button" parent="WinScreen/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Back to Title"
+
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 1
 anchors_preset = 10
@@ -360,6 +408,17 @@ offset_right = -401.0
 offset_bottom = 27.0
 grow_horizontal = 2
 show_percentage = false
+script = ExtResource("15_jkv2x")
+
+[node name="Label" type="Label" parent="ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Objectives"
+horizontal_alignment = 1
 
 [connection signal="mouse_entered" from="HBoxToolContainer/DestroyPanel" to="HBoxToolContainer/DestroyPanel" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxToolContainer/DestroyPanel" to="HBoxToolContainer/DestroyPanel" method="_on_mouse_exited"]
@@ -369,4 +428,4 @@ show_percentage = false
 [connection signal="pressed" from="PauseScreen/Panel/VBoxContainer/Back to Title" to="PauseScreen" method="_on_back_to_title_pressed"]
 [connection signal="pressed" from="PauseScreen/Panel/VBoxContainer/Sound" to="PauseScreen" method="_on_sound_pressed"]
 [connection signal="pressed" from="GameOverScreen/Panel/VBoxContainer/Back to Title" to="GameOverScreen" method="_on_back_to_title_pressed"]
-[connection signal="value_changed" from="ProgressBar" to="." method="_on_progress_bar_value_changed"]
+[connection signal="pressed" from="WinScreen/Panel/VBoxContainer/Back to Title" to="WinScreen" method="_on_back_to_title_pressed"]
