@@ -57,6 +57,7 @@ _data = {
 }
 
 [node name="Control" type="Control"]
+z_index = 99
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -64,7 +65,6 @@ offset_bottom = 40.0
 script = ExtResource("1_xc1qu")
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
