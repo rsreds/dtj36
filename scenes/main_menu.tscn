@@ -1,0 +1,304 @@
+[gd_scene load_steps=20 format=3 uid="uid://brxujwllq17v7"]
+
+[ext_resource type="Texture2D" uid="uid://k0ietekbecys" path="res://assets/title.png" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://ce8hml3hyspvy" path="res://scripts/main_menu.gd" id="1_wu84c"]
+[ext_resource type="Environment" uid="uid://c1eqfdnloqq4w" path="res://space_environment.tres" id="2_bqqt6"]
+[ext_resource type="Script" uid="uid://dle26h0q5pfj7" path="res://scripts/orbit.gd" id="4_8ln24"]
+[ext_resource type="PackedScene" uid="uid://dfjlpy0ta343d" path="res://scenes/planet.tscn" id="5_rtw2f"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_v0ycd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0ycd"]
+emission_enabled = true
+emission = Color(0.999999, 0.482236, 0.0062724, 1)
+emission_energy_multiplier = 2.4
+
+[sub_resource type="TorusMesh" id="TorusMesh_oa1go"]
+resource_local_to_scene = true
+inner_radius = 1.95
+outer_radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbmy8"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(1, 1, 0.24, 1)
+emission = Color(0.594288, 0.22527, 0.811526, 1)
+disable_receive_shadows = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_jk1qb"]
+resource_local_to_scene = true
+inner_radius = 1.95
+outer_radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5dd4i"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(1, 1, 0.24, 1)
+emission = Color(0.594288, 0.22527, 0.811526, 1)
+disable_receive_shadows = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_lgwnu"]
+resource_local_to_scene = true
+inner_radius = 1.95
+outer_radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flqon"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(1, 1, 0.24, 1)
+emission = Color(0.594288, 0.22527, 0.811526, 1)
+disable_receive_shadows = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_rcqid"]
+resource_local_to_scene = true
+inner_radius = 1.95
+outer_radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ajci"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(1, 1, 0.24, 1)
+emission = Color(0.594288, 0.22527, 0.811526, 1)
+disable_receive_shadows = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_7b55j"]
+resource_local_to_scene = true
+inner_radius = 1.95
+outer_radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pajh"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(1, 1, 0.24, 1)
+emission = Color(0.594288, 0.22527, 0.811526, 1)
+disable_receive_shadows = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_j7ex8"]
+resource_local_to_scene = true
+inner_radius = 1.95
+outer_radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8gd2"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(1, 1, 0.24, 1)
+emission = Color(0.594288, 0.22527, 0.811526, 1)
+disable_receive_shadows = true
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wu84c")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.5
+offset_right = 45.5
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tutorial" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Tutorial"
+
+[node name="Level1" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Level 1"
+
+[node name="Level2" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Level 2"
+
+[node name="Level3" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Level 3"
+
+[node name="Sound" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Sound: ON"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+texture = ExtResource("1_l6cm7")
+
+[node name="BackgroundView" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="BackgroundView"]
+transform = Transform3D(1, 0, 0, 0, 0.985166, 0.171602, 0, -0.171602, 0.985166, 0, 1.82968, 4.28137)
+size = 11.989
+
+[node name="Sun" type="MeshInstance3D" parent="BackgroundView"]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_v0ycd")
+surface_material_override/0 = SubResource("StandardMaterial3D_v0ycd")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="BackgroundView/Sun"]
+distance_fade_begin = 44.7
+omni_range = 15.9401
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="BackgroundView"]
+environment = ExtResource("2_bqqt6")
+
+[node name="Orbit1" type="StaticBody3D" parent="BackgroundView"]
+transform = Transform3D(0.405142, 0, 0.914254, 0, 1, 0, -0.914254, 0, 0.405142, 0, 0, 0)
+script = ExtResource("4_8ln24")
+
+[node name="Marker3D" type="Marker3D" parent="BackgroundView/Orbit1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Planet" parent="BackgroundView/Orbit1/Marker3D" instance=ExtResource("5_rtw2f")]
+planet_size_multiplier = 2
+planet_color = Color(0.466418, 0.158905, 0.334911, 1)
+
+[node name="OrbitMesh" type="MeshInstance3D" parent="BackgroundView/Orbit1"]
+cast_shadow = 0
+mesh = SubResource("TorusMesh_oa1go")
+surface_material_override/0 = SubResource("StandardMaterial3D_tbmy8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackgroundView/Orbit1"]
+
+[node name="Orbit2" type="StaticBody3D" parent="BackgroundView"]
+transform = Transform3D(-0.997916, 0, 0.0645324, 0, 1, 0, -0.0645324, 0, -0.997916, 0, 0, 0)
+script = ExtResource("4_8ln24")
+orbit_distance = 2
+
+[node name="Marker3D" type="Marker3D" parent="BackgroundView/Orbit2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Planet" parent="BackgroundView/Orbit2/Marker3D" instance=ExtResource("5_rtw2f")]
+planet_size_multiplier = 1
+planet_color = Color(0.288525, 0.563639, 0.549261, 1)
+
+[node name="OrbitMesh" type="MeshInstance3D" parent="BackgroundView/Orbit2"]
+cast_shadow = 0
+mesh = SubResource("TorusMesh_jk1qb")
+surface_material_override/0 = SubResource("StandardMaterial3D_5dd4i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackgroundView/Orbit2"]
+
+[node name="Orbit3" type="StaticBody3D" parent="BackgroundView"]
+transform = Transform3D(0.801776, 0, 0.597625, 0, 1, 0, -0.597625, 0, 0.801776, 0, 0, 0)
+script = ExtResource("4_8ln24")
+orbit_distance = 3
+
+[node name="Marker3D" type="Marker3D" parent="BackgroundView/Orbit3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Planet" parent="BackgroundView/Orbit3/Marker3D" instance=ExtResource("5_rtw2f")]
+planet_size_multiplier = 3
+planet_color = Color(0.617252, 0.135859, 0.625442, 1)
+
+[node name="OrbitMesh" type="MeshInstance3D" parent="BackgroundView/Orbit3"]
+cast_shadow = 0
+mesh = SubResource("TorusMesh_lgwnu")
+surface_material_override/0 = SubResource("StandardMaterial3D_flqon")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackgroundView/Orbit3"]
+
+[node name="Orbit4" type="StaticBody3D" parent="BackgroundView"]
+transform = Transform3D(-0.981627, 0, 0.190809, 0, 1, 0, -0.190809, 0, -0.981627, 0, 0, 0)
+script = ExtResource("4_8ln24")
+orbit_distance = 4
+
+[node name="Marker3D" type="Marker3D" parent="BackgroundView/Orbit4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Planet" parent="BackgroundView/Orbit4/Marker3D" instance=ExtResource("5_rtw2f")]
+planet_size_multiplier = 2
+planet_color = Color(0.87033, 0.754341, 0.240492, 1)
+
+[node name="OrbitMesh" type="MeshInstance3D" parent="BackgroundView/Orbit4"]
+cast_shadow = 0
+mesh = SubResource("TorusMesh_rcqid")
+surface_material_override/0 = SubResource("StandardMaterial3D_1ajci")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackgroundView/Orbit4"]
+
+[node name="Orbit5" type="StaticBody3D" parent="BackgroundView"]
+transform = Transform3D(-0.345298, 0, 0.938493, 0, 1, 0, -0.938493, 0, -0.345298, 0, 0, 0)
+script = ExtResource("4_8ln24")
+orbit_distance = 5
+
+[node name="Marker3D" type="Marker3D" parent="BackgroundView/Orbit5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Planet" parent="BackgroundView/Orbit5/Marker3D" instance=ExtResource("5_rtw2f")]
+planet_size_multiplier = 4
+planet_color = Color(0.999908, 0.434902, 0.366238, 1)
+
+[node name="OrbitMesh" type="MeshInstance3D" parent="BackgroundView/Orbit5"]
+cast_shadow = 0
+mesh = SubResource("TorusMesh_7b55j")
+surface_material_override/0 = SubResource("StandardMaterial3D_5pajh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackgroundView/Orbit5"]
+
+[node name="Orbit6" type="StaticBody3D" parent="BackgroundView"]
+transform = Transform3D(0.0314107, 0, -0.999507, 0, 1, 0, 0.999507, 0, 0.0314107, 0, 0, 0)
+script = ExtResource("4_8ln24")
+orbit_distance = 6
+
+[node name="Marker3D" type="Marker3D" parent="BackgroundView/Orbit6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Planet" parent="BackgroundView/Orbit6/Marker3D" instance=ExtResource("5_rtw2f")]
+planet_size_multiplier = 2
+planet_color = Color(0.256951, 0.463403, 0.736994, 1)
+
+[node name="OrbitMesh" type="MeshInstance3D" parent="BackgroundView/Orbit6"]
+cast_shadow = 0
+mesh = SubResource("TorusMesh_j7ex8")
+surface_material_override/0 = SubResource("StandardMaterial3D_a8gd2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackgroundView/Orbit6"]
+
+[connection signal="pressed" from="Panel/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Level3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Sound" to="." method="_on_sound_pressed"]
+[connection signal="input_event" from="BackgroundView/Orbit1" to="BackgroundView/Orbit1" method="_on_input_event"]
+[connection signal="mouse_entered" from="BackgroundView/Orbit1" to="BackgroundView/Orbit1" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="BackgroundView/Orbit1" to="BackgroundView/Orbit1" method="_on_mouse_exited"]
+[connection signal="input_event" from="BackgroundView/Orbit2" to="BackgroundView/Orbit2" method="_on_input_event"]
+[connection signal="mouse_entered" from="BackgroundView/Orbit2" to="BackgroundView/Orbit2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="BackgroundView/Orbit2" to="BackgroundView/Orbit2" method="_on_mouse_exited"]
+[connection signal="input_event" from="BackgroundView/Orbit3" to="BackgroundView/Orbit3" method="_on_input_event"]
+[connection signal="mouse_entered" from="BackgroundView/Orbit3" to="BackgroundView/Orbit3" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="BackgroundView/Orbit3" to="BackgroundView/Orbit3" method="_on_mouse_exited"]
+[connection signal="input_event" from="BackgroundView/Orbit4" to="BackgroundView/Orbit4" method="_on_input_event"]
+[connection signal="mouse_entered" from="BackgroundView/Orbit4" to="BackgroundView/Orbit4" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="BackgroundView/Orbit4" to="BackgroundView/Orbit4" method="_on_mouse_exited"]
+[connection signal="input_event" from="BackgroundView/Orbit5" to="BackgroundView/Orbit5" method="_on_input_event"]
+[connection signal="mouse_entered" from="BackgroundView/Orbit5" to="BackgroundView/Orbit5" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="BackgroundView/Orbit5" to="BackgroundView/Orbit5" method="_on_mouse_exited"]
+[connection signal="input_event" from="BackgroundView/Orbit6" to="BackgroundView/Orbit6" method="_on_input_event"]
+[connection signal="mouse_entered" from="BackgroundView/Orbit6" to="BackgroundView/Orbit6" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="BackgroundView/Orbit6" to="BackgroundView/Orbit6" method="_on_mouse_exited"]

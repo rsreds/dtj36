@@ -3,6 +3,8 @@
 ## Controls objectives and resource values, plus calls on delegate managers to perform actions
 extends Node
 
+var muted: bool = false
+
 var score: int
 
 var corporation_check_count: int = 0
