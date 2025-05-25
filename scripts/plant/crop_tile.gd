@@ -2,6 +2,7 @@ extends PanelContainer
 
 @export var crop_info: Crop
 @onready var texture: AtlasTexture = $TextureRect.texture
+@onready var label: Label = $TextureRect/Label
 
 var this_is_dragging:bool = false
 
@@ -35,6 +36,13 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_released("ui_click"):
 		pivot_offset = Vector2(size.x/2, size.y)
 		scale = Vector2(1,1)
+	var amount
+	var objective
+	for crop in GameManager.crop_list:
+		if crop_info.name == crop['name']:
+			amount = crop['amount']
+			objective = crop['objective']
+	label.text = "x%d/%d" % [amount,objective]
 
 func _on_mouse_entered() -> void:
 	if not GameManager.is_dragging:

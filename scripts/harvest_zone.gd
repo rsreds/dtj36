@@ -26,6 +26,9 @@ func harvest_resources(planet:PlanetNode):
 	var crop_name = planet.crop.name
 	var target_position = Vector2(1000,600)
 	for i in range(amount):
+		for crop in GameManager.crop_list:
+			if crop["name"] == crop_name:
+				crop["amount"] += 1
 		var crop_icon = CROP_ICON.instantiate()
 		add_child(crop_icon)
 		crop_icon.z_index = 99
