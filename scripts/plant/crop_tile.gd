@@ -16,6 +16,7 @@ func _ready() -> void:
 		texture.region = Rect2(14.563, 201, 141, 150)
 	elif crop_info.name == GameManager.crop_list[4]["name"]:
 		texture.region = Rect2(174.5, 232, 164, 142)
+	tooltip_text = crop_info.name
 
 func _gui_input(event):
 	if event.is_action_pressed("ui_click") and not GameManager.is_dragging:
@@ -28,9 +29,12 @@ func _gui_input(event):
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("ui_click"):
 		if GameManager.is_dragging and this_is_dragging:
-			GameManager.is_dragging = false
+			GameManager.stop_dragging()
 			this_is_dragging = false
 			print("Dropped ", crop_info.name)
+	if Input.is_action_just_released("ui_click"):
+		pivot_offset = Vector2(size.x/2, size.y)
+		scale = Vector2(1,1)
 
 func _on_mouse_entered() -> void:
 	if not GameManager.is_dragging:

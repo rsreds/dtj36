@@ -18,7 +18,7 @@ func _ready() -> void:
 		planet = PlanetNode.generate_new()
 		planet.planet_color = Color(randf(), randf(), randf())
 		planet.planet_size_multiplier = randf_range(1, 7.5)
-
+	
 	sub_view_port.add_child(planet)
 	
 	name_label.text = planet.name
@@ -44,7 +44,9 @@ func _process(delta: float) -> void:
 			GameManager.stop_dragging()
 			this_is_dragging = false
 			print("Dropped planet from card to be returned ", planet.name)
-			
+		pivot_offset = Vector2(size.x/2, size.y)
+		scale = Vector2(1,1)
+					
 func _on_mouse_entered() -> void:
 	if not GameManager.is_dragging:
 		pivot_offset = Vector2(size.x, size.y/2)
