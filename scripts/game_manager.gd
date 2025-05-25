@@ -68,6 +68,7 @@ func show_point_popup(text:String, planet: PlanetNode):
 	point.text = text
 	point.position = camera.unproject_position(planet.global_position)
 	get_tree().root.add_child(point)
+	await point.done
 
 
 func next_turn() -> void:
