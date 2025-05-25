@@ -52,6 +52,7 @@ func _ready() -> void:
 	material.albedo_color = planet_color
 	range_mesh.get_surface_override_material(0).albedo_color = Color(planet_color.r, planet_color.g, planet_color.b, 0.33)
 	range_mesh.mesh.top_radius = base_effects_range
+	range_mesh.visible = false
 
 func _process(_delta: float) -> void:
 	if is_being_dragged:
@@ -87,6 +88,7 @@ func _on_mouse_entered() -> void:
 	on_planet = true
 	GameManager.is_hovering_planet = true
 	GameManager.planet_being_hovered = self
+	range_mesh.visible = true
 	set_glow(true)
 
 
@@ -94,6 +96,7 @@ func _on_mouse_exited() -> void:
 	GameManager.is_hovering_planet = false
 	GameManager.planet_being_hovered = null
 	on_planet = false
+	range_mesh.visible = false
 	set_glow(false)
 
 
