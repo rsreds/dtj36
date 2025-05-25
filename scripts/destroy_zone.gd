@@ -10,7 +10,7 @@ func _process(delta: float) -> void:
 		GameManager.planets.erase(planet)
 		planet.orbit.rotation.y = 0
 		planet.orbit.planet = null
-		planet.queue_free()
+		planet.free()
 		GameManager.next_turn()
 
 func _on_mouse_entered() -> void:

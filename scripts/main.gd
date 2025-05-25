@@ -4,6 +4,7 @@ extends Control
 const PLANET_ICON = preload("res://scenes/planet_icon.tscn")
 @onready var icons_control: Control = $Icons
 @onready var progress_bar: ProgressBar = $ProgressBar
+@onready var game_over_screen: Control = $GameOverScreen
 
 func _process(delta: float) -> void:
 	progress_bar.max_value = GameManager.total_steps
@@ -50,3 +51,8 @@ func _process(delta: float) -> void:
 				texture.region = region
 				icons_control.add_child(new_icon)
 				
+func _on_progress_bar_value_changed(value: float) -> void:
+	if progress_bar.value >= progress_bar.max_value:
+		if not GameManager.check_objectives():
+			get_tree().paused = true
+			game_over_screen.visible = true
