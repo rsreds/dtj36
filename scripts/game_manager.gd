@@ -35,19 +35,19 @@ var crop_list: Array[Dictionary] = [
 
 var level_list = [
 	[
-		Objective.new("Earn 4000 credits", func (): return score >= 1000)
+		Objective.new("Earn 4000 credits", func (): return score >= 4000)
 	],
 	[
-		Objective.new("Earn 8000 credits", func (): return score >= 2000), 
+		Objective.new("Earn 8000 credits", func (): return score >= 8000), 
 		Objective.new("Harvest 20 Crimson Strands and 20 Sprinks", func (): return crop_list[0]['amount'] >= 20 and crop_list[4]['amount'] >= 20)
 	],
 	[
-		Objective.new("Earn 10000 credits", func (): return score >= 3000), 
+		Objective.new("Earn 10000 credits", func (): return score >= 10000), 
 		Objective.new("Have 4 planets", func (): return len(planets) >= 4),
 		Objective.new("Harvest 10 of each plant", func (): return crop_list[0]['amount'] >= 10 and crop_list[3]['amount'] >= 10 and crop_list[1]['amount'] >= 10 and crop_list[2]['amount'] >= 10 and crop_list[4]['amount'] >= 10),
 	],
 	[
-		Objective.new("Earn 20000 credits", func (): return score >= 3000), 
+		Objective.new("Earn 20000 credits", func (): return score >= 20000), 
 		Objective.new("Have 6 planets", func (): return len(planets) >= 6),
 		Objective.new("Harvest 20 of each plant", func (): return crop_list[0]['amount'] >= 20 and crop_list[3]['amount'] >= 20 and crop_list[1]['amount'] >= 20 and crop_list[4]['amount'] >= 20 and crop_list[2]['amount'] >= 20),
 	],

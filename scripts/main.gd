@@ -8,9 +8,12 @@ const PLANET_ICON = preload("res://scenes/planet_icon.tscn")
 @onready var win_screen: Control = $WinScreen
 @onready var credit_label: Label = $SidePanel/HBoxCropContainer/Panel/VBoxContainer/Label2
 
+var button_available: bool = true
+
 func _ready() -> void:
 	GameManager.connect("win",_on_win)
 	GameManager.connect("lose",_on_game_over)
+	GameManager.connect("step", func (): button_available = true)
 
 func _process(delta: float) -> void:
 	credit_label.text = '%s' % GameManager.score
@@ -58,6 +61,7 @@ func _on_win()->void:
 	get_tree().paused = true
 	win_screen.visible = true
 
-
 func _on_button_pressed() -> void:
-	GameManager.next_turn()
+	if button_available == true:
+		button_available = false
+		GameManager.next_turn()

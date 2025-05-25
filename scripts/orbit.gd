@@ -32,8 +32,10 @@ func _ready() -> void:
 
 func step() -> void:
 	if has_planets():
-		if roundi(rad_to_deg(rotation.y + PI / (orbit_distance * 2))) % 360 == 0:
+		var orbit_flag = false
+		if rotation.y + PI / (orbit_distance * 2) > 2 * PI:
 			orbit_completed = true
+			orbit_flag = true
 			
 		var tween = create_tween()
 		tween.tween_property(
@@ -44,6 +46,9 @@ func step() -> void:
 		).set_trans(
 			Tween.TRANS_SINE
 		)
+		await tween.finished
+		if orbit_flag:
+			rotation.y = 0
 		
 
 func has_planets():
