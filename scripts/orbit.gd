@@ -1,34 +1,37 @@
 class_name OrbitNode
 extends StaticBody3D
 
-const PLANET = preload("res://scenes/planet.tscn")
-const ORBIT_MARGIN : float = 0.5
-const ORBIT_GAP : float = 0.75
+const PLANET := preload("res://scenes/planet.tscn")
+const ORBIT_MARGIN := 0.5
+const ORBIT_GAP := 0.75
 
-@export var orbit_distance: int = 1 
+@export var orbit_distance := 1
 @onready var planet_marker: Marker3D = $Marker3D
 @onready var orbit_mesh: MeshInstance3D = $OrbitMesh
 @onready var collider: CollisionShape3D = $CollisionShape3D
 
 var planet: PlanetNode
-var starting_position: Vector3
+var starting_position := Vector3.ZERO
 
-func _ready():
-	planet_marker.position.x = ORBIT_MARGIN + orbit_distance * ORBIT_GAP
-	orbit_mesh.mesh.inner_radius = ORBIT_MARGIN + orbit_distance * ORBIT_GAP - 0.025
-	orbit_mesh.mesh.outer_radius = ORBIT_MARGIN + orbit_distance * ORBIT_GAP + 0.025
-	
+func _ready() -> void:
+	var distance := ORBIT_MARGIN + orbit_distance * ORBIT_GAP
+	planet_marker.position.x = distance
+	orbit_mesh.mesh.inner_radius = distance - 0.025
+	orbit_mesh.mesh.outer_radius = distance + 0.025
+
 	starting_position = Vector3(0, 1, -(orbit_mesh.mesh.get_aabb().size.x * orbit_mesh.scale.x) / 2.0)
-	
-	var collider_mesh: TorusMesh = orbit_mesh.mesh.duplicate()
-	collider_mesh.inner_radius = collider_mesh.inner_radius - 0.25
-	collider_mesh.outer_radius = collider_mesh.outer_radius + 0.25
+
+	var collider_mesh := orbit_mesh.mesh.duplicate()
+	collider_mesh.inner_radius -= 0.25
+	collider_mesh.outer_radius += 0.25
 	collider.shape = collider_mesh.create_trimesh_shape()
+	
+	GameManager.orbits.append(self)
 
 
-func step():
-	var angle = PI/(5*orbit_distance)
-	rotate(Vector3(0,1,0), angle)
+func step() -> void:
+	await create_tween().tween_property(self, "rotation:y", rotation.y + (PI / orbit_distance), 0.3).set_trans(Tween.TRANS_SINE)
+	#rotate(Vector3.UP, PI / orbit_distance)
 
 
 func set_glow(val: bool) -> void:
@@ -36,7 +39,6 @@ func set_glow(val: bool) -> void:
 
 
 func _on_mouse_entered() -> void:
-	print("Mouse entered")
 	if GameManager.is_dragging and GameManager.object_being_dragged is PlanetNode and GameManager.is_dragging_new_planet:
 		set_glow(true)
 
@@ -45,15 +47,17 @@ func _on_mouse_exited() -> void:
 	set_glow(false)
 
 
-func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.is_released():
-			if GameManager.is_dragging and GameManager.object_being_dragged is PlanetNode and not planet and GameManager.is_dragging_new_planet:
-				set_glow(false)
-				GameManager.is_dragging_new_planet = false
-				GameManager.object_being_dragged.reparent(self)
-				GameManager.object_being_dragged.camera = get_viewport().get_camera_3d()
-				GameManager.object_being_dragged.global_position = starting_position
-				planet = GameManager.object_being_dragged
-				PlanetManager.draft_planet(GameManager.object_being_dragged)
-				GameManager.stop_dragging()
+func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_released():
+		if GameManager.is_dragging and GameManager.object_being_dragged is PlanetNode and GameManager.is_dragging_new_planet and not planet:
+			set_glow(false)
+			GameManager.is_dragging_new_planet = false
+
+			var dragged_planet = GameManager.object_being_dragged
+			planet = dragged_planet
+			dragged_planet.reparent(self)
+			dragged_planet.global_position = starting_position
+			dragged_planet.draft()
+			
+
+			GameManager.stop_dragging()

@@ -19,13 +19,17 @@ var is_dragging: bool = false
 var is_dragging_new_planet: bool = false
 var object_being_dragged: Variant = null
 
+var orbits: Array[OrbitNode] = []
 
 func _ready() -> void:
 	create_new_objectives()
+	
 
 
 func next_turn() -> void:
 	PlanetManager.next_turn()
+	for o in orbits:
+		o.step()
 
 
 func start_dragging(information: Variant) -> void:

@@ -1,10 +1,25 @@
-[gd_scene load_steps=21 format=3 uid="uid://ce4w7q6ulqodm"]
+[gd_scene load_steps=32 format=3 uid="uid://ce4w7q6ulqodm"]
 
 [ext_resource type="PackedScene" uid="uid://cyjsuudmlnffw" path="res://scenes/space_view.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ch34qo7d3y7q" path="res://scenes/planet_card.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://bny7ddafrjbv2" path="res://scripts/destroy_zone.gd" id="2_tefeu"]
 [ext_resource type="Script" uid="uid://dbygc6qaouoxv" path="res://scripts/plant/crop_tile.gd" id="3_1bvp3"]
 [ext_resource type="Script" uid="uid://c1t2g5oykjn01" path="res://fps_label.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://bkphgw6tq0sdp" path="res://scripts/fertilise_zone.gd" id="3_tipki"]
+[ext_resource type="Script" uid="uid://43c7fa0m426h" path="res://scripts/harvest_zone.gd" id="4_85g3d"]
 [ext_resource type="Script" uid="uid://c455f22dm0s3a" path="res://scripts/plant/crop.gd" id="4_lquwl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya4ey"]
+bg_color = Color(0.996078, 0, 0, 0.45098)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choun"]
+bg_color = Color(0.333333, 0.172549, 0, 0.309804)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb6dy"]
+bg_color = Color(0.403922, 0.682353, 0.352941, 0.568627)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
 
 [sub_resource type="Resource" id="Resource_7mycd"]
 script = ExtResource("4_lquwl")
@@ -20,6 +35,9 @@ load_path = "res://.godot/imported/plants.png-54ade7bc780af7d091f5f4ac980ba3bd.c
 atlas = SubResource("CompressedTexture2D_1bvp3")
 region = Rect2(199.25, 31.5, 122, 154)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tefeu"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
+
 [sub_resource type="Resource" id="Resource_lquwl"]
 script = ExtResource("4_lquwl")
 name = "Snowsponge"
@@ -33,6 +51,9 @@ load_path = "res://.godot/imported/plants.png-54ade7bc780af7d091f5f4ac980ba3bd.c
 [sub_resource type="AtlasTexture" id="AtlasTexture_272bh"]
 atlas = SubResource("CompressedTexture2D_7mycd")
 region = Rect2(345.25, -2, 117, 182)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6xl0"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
 
 [sub_resource type="Resource" id="Resource_272bh"]
 script = ExtResource("4_lquwl")
@@ -48,6 +69,9 @@ load_path = "res://.godot/imported/plants.png-54ade7bc780af7d091f5f4ac980ba3bd.c
 atlas = SubResource("CompressedTexture2D_5vw27")
 region = Rect2(-1.875, 0, 141, 155)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tipki"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
+
 [sub_resource type="Resource" id="Resource_5vw27"]
 script = ExtResource("4_lquwl")
 name = "Soylent Green"
@@ -61,6 +85,9 @@ load_path = "res://.godot/imported/plants.png-54ade7bc780af7d091f5f4ac980ba3bd.c
 [sub_resource type="AtlasTexture" id="AtlasTexture_efxa6"]
 atlas = SubResource("CompressedTexture2D_4c57u")
 region = Rect2(14.563, 201, 141, 150)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85g3d"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
 
 [sub_resource type="Resource" id="Resource_kek77"]
 script = ExtResource("4_lquwl")
@@ -89,6 +116,69 @@ size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="SpaceView" parent="." instance=ExtResource("1_ig7tw")]
+
+[node name="VBoxCardContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+offset_right = -353.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Panel2" type="Panel" parent="VBoxCardContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ya4ey")
+script = ExtResource("2_tefeu")
+
+[node name="Label" type="Label" parent="VBoxCardContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Destroy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="VBoxCardContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_choun")
+script = ExtResource("3_tipki")
+
+[node name="Label" type="Label" parent="VBoxCardContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Fertilise"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel3" type="Panel" parent="VBoxCardContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_eb6dy")
+script = ExtResource("4_85g3d")
+
+[node name="Label" type="Label" parent="VBoxCardContainer/Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Harvest"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SidePanel" type="Panel" parent="."]
 layout_mode = 1
@@ -130,6 +220,7 @@ grow_vertical = 0
 [node name="Crop1" type="PanelContainer" parent="SidePanel/HBoxCropContainer"]
 custom_minimum_size = Vector2(86, 86)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tbgi4")
 script = ExtResource("3_1bvp3")
 crop_info = SubResource("Resource_7mycd")
 
@@ -149,6 +240,7 @@ text = "10/20
 [node name="Crop2" type="PanelContainer" parent="SidePanel/HBoxCropContainer"]
 custom_minimum_size = Vector2(86, 86)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tefeu")
 script = ExtResource("3_1bvp3")
 crop_info = SubResource("Resource_lquwl")
 
@@ -168,6 +260,7 @@ text = "10/20
 [node name="Crop3" type="PanelContainer" parent="SidePanel/HBoxCropContainer"]
 custom_minimum_size = Vector2(86, 86)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o6xl0")
 script = ExtResource("3_1bvp3")
 crop_info = SubResource("Resource_272bh")
 
@@ -187,6 +280,7 @@ text = "10/20
 [node name="Crop4" type="PanelContainer" parent="SidePanel/HBoxCropContainer"]
 custom_minimum_size = Vector2(86, 86)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tipki")
 script = ExtResource("3_1bvp3")
 crop_info = SubResource("Resource_5vw27")
 
@@ -206,6 +300,7 @@ text = "10/20
 [node name="Crop5" type="PanelContainer" parent="SidePanel/HBoxCropContainer"]
 custom_minimum_size = Vector2(86, 86)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_85g3d")
 script = ExtResource("3_1bvp3")
 crop_info = SubResource("Resource_kek77")
 
@@ -227,12 +322,3 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("3_h2yge")
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 599.0
-offset_right = 61.0
-offset_bottom = 630.0
-text = "STEP_ORBIT
-"
