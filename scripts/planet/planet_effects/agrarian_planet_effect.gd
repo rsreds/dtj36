@@ -9,3 +9,4 @@ func _init() -> void:
 
 func on_orbit(parent_planet: PlanetNode, planet_list: Array[PlanetNode]) -> void:
 	parent_planet.base_crop_growth_multiplier += 0.1
+	await GameManager.show_point_popup("+%s" % 0.1, parent_planet, Color.SEA_GREEN)

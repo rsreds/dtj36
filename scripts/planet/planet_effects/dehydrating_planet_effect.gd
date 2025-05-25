@@ -12,4 +12,4 @@ func on_step(parent_planet: PlanetNode, planet_list: Array[PlanetNode]) -> void:
 	for planet in planet_list:
 		if planet in nearby:
 			planet.current_water_content = planet.current_water_content - 1 as PlanetNode.WaterContent
-			GameManager.show_point_popup('-1', planet, Color.PALE_TURQUOISE)
+			await GameManager.show_point_popup('-1', planet, Color.PALE_TURQUOISE)
