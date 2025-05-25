@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cyjsuudmlnffw"]
 
 [ext_resource type="Environment" uid="uid://c1eqfdnloqq4w" path="res://space_environment.tres" id="1_5aonc"]
-[ext_resource type="PackedScene" uid="uid://ocr3reh1hduq" path="res://orbit.tscn" id="2_dl0fr"]
+[ext_resource type="PackedScene" uid="uid://ocr3reh1hduq" path="res://scenes/orbit.tscn" id="2_dl0fr"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_v0ycd"]
 
@@ -13,7 +13,9 @@ emission_energy_multiplier = 2.4
 [node name="Node3D" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.74481, 9.87202, 0)
+projection = 1
+size = 11.989
 
 [node name="Sun" type="MeshInstance3D" parent="."]
 cast_shadow = 0
@@ -41,3 +43,11 @@ orbit_distance = 3
 [node name="Orbit4" parent="." instance=ExtResource("2_dl0fr")]
 transform = Transform3D(-0.851727, 0, 0.523986, 0, 1, 0, -0.523986, 0, -0.851727, 0, 0, 0)
 orbit_distance = 4
+
+[node name="Orbit5" parent="." instance=ExtResource("2_dl0fr")]
+transform = Transform3D(0.450878, 0, -0.892586, 0, 1, 0, 0.892586, 0, 0.450878, 0, 0, 0)
+orbit_distance = 5
+
+[node name="Orbit6" parent="." instance=ExtResource("2_dl0fr")]
+transform = Transform3D(0.0836779, 0, 0.996493, 0, 1, 0, -0.996493, 0, 0.0836779, 0, 0, 0)
+orbit_distance = 6

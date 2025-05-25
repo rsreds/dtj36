@@ -1,6 +1,6 @@
 class_name Crop
 extends Resource
 
-var name: String
-var optimal_water: PlanetData.WaterContent
-var base_growth_rate: int = 1
+@export var name: String
+@export var optimal_water: PlanetNode.WaterContent
+@export var base_growth_rate: int = 1

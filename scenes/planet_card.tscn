@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://ch34qo7d3y7q"]
+[gd_scene load_steps=4 format=3 uid="uid://ch34qo7d3y7q"]
 
-[ext_resource type="PackedScene" uid="uid://dfjlpy0ta343d" path="res://planet.tscn" id="1_5tdk4"]
 [ext_resource type="Script" uid="uid://dnoqelp5e7saq" path="res://scripts/planet_card.gd" id="1_7g2o6"]
 [ext_resource type="Environment" uid="uid://c1eqfdnloqq4w" path="res://space_environment.tres" id="1_ehs4s"]
 
@@ -29,8 +28,6 @@ render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="HBoxContainer/SubViewportContainer/SubViewPort"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
-
-[node name="Planet" parent="HBoxContainer/SubViewportContainer/SubViewPort" instance=ExtResource("1_5tdk4")]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="HBoxContainer/SubViewportContainer/SubViewPort"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.00237)

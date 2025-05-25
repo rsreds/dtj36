@@ -28,7 +28,6 @@ func _ready() -> void:
 	var card1 = PLANET_CARD.instantiate()
 	var planet1 = PLANET.instantiate()
 	var orbit1 = ORBIT.instantiate()
-	orbit1.name = "Orbit"
 	orbit1.orbit_distance = 1
 	planet1.planet_size_multiplier = 3
 	planet1.planet_color = Color.YELLOW
@@ -41,7 +40,6 @@ func _ready() -> void:
 	var card2 = PLANET_CARD.instantiate()
 	var planet2 = PLANET.instantiate()
 	var orbit2 = ORBIT.instantiate()
-	orbit2.name = "Orbit"
 	orbit2.orbit_distance = 2
 	planet2.planet_size_multiplier = 2
 	planet2.planet_color = Color.INDIAN_RED
@@ -56,8 +54,6 @@ func _ready() -> void:
 	var planet3 = PLANET.instantiate()
 	var orbit3 = ORBIT.instantiate()
 	var orbit4 = ORBIT.instantiate()
-	orbit3.name = "Orbit"
-	orbit4.name = "Orbit"
 	orbit3.orbit_distance = 3
 	orbit4.orbit_distance = 4
 	planet3.planet_size_multiplier = 4
@@ -173,10 +169,3 @@ func _clear_hover():
 	if hovered_node and hovered_node.has_method("set_glow"):
 		hovered_node.set_glow(false)
 	hovered_node = null
-
-
-
-func _on_step_button_pressed() -> void:
-	for orbit in space_view.get_children():
-		if orbit is OrbitNode:
-			orbit.step()
