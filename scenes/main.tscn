@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ce4w7q6ulqodm"]
+[gd_scene load_steps=24 format=3 uid="uid://ce4w7q6ulqodm"]
 
 [ext_resource type="Script" uid="uid://t5f8rleex6tx" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://cyjsuudmlnffw" path="res://scenes/space_view.tscn" id="1_ig7tw"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://ckw6u1ehl8tps" path="res://scripts/mouse_tooltip.gd" id="9_choun"]
 [ext_resource type="PackedScene" uid="uid://dw6svdvxr66ad" path="res://scenes/space_tooltip.tscn" id="11_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://cqmdb4fuyvy0t" path="res://scenes/tooltip_view.tscn" id="12_eb6dy"]
-[ext_resource type="Script" uid="uid://ddubkka3fvwh2" path="res://scripts/pause_screen.gd" id="13_trceg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya4ey"]
 bg_color = Color(0.996078, 0, 0, 0.45098)
@@ -256,7 +255,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("13_trceg")
 
 [node name="Panel" type="Panel" parent="PauseScreen"]
 custom_minimum_size = Vector2(200, 0)

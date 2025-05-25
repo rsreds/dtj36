@@ -31,9 +31,23 @@ func _process(delta: float) -> void:
 			visible = true
 		if GameManager.object_being_dragged is Crop:
 			sub_viewport_container.visible = false
+			set_region(texture_rect.texture)
 			texture_rect.visible = true
 			tooltip_view.visible = false
 			visible = true
 	else:
 		var mouse_position = get_global_mouse_position()
 		position = mouse_position
+
+func set_region(texture: AtlasTexture) -> void:
+	var crop_info = GameManager.object_being_dragged
+	if crop_info.name == GameManager.crop_list[0]["name"]:
+		texture.region = Rect2(199.25, 31.5, 122, 154)
+	elif crop_info.name == GameManager.crop_list[1]["name"]:
+		texture.region = Rect2(345.25, -2, 117, 182)
+	elif crop_info.name == GameManager.crop_list[2]["name"]:
+		texture.region = Rect2(0, 0, 150, 155)
+	elif crop_info.name == GameManager.crop_list[3]["name"]:
+		texture.region = Rect2(14.563, 201, 141, 150)
+	elif crop_info.name == GameManager.crop_list[4]["name"]:
+		texture.region = Rect2(174.5, 232, 164, 142)
