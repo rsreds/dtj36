@@ -81,8 +81,9 @@ func _on_mouse_exited() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("ui_click") and on_orbit:
-		if GameManager.is_dragging and GameManager.object_being_dragged is PlanetCard and not has_planets():
+		if GameManager.is_dragging and GameManager.object_being_dragged is PlanetCard and not has_planets() and GameManager.score >= 250:
 			set_glow(false)
+			GameManager.score -= 250
 			planet = GameManager.object_being_dragged.planet.clone()
 			planet_marker.add_child(planet)
 			planet.draft(self)

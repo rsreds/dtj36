@@ -10,8 +10,8 @@ extends PanelContainer
 		if planet:
 			sub_view_port.add_child(planet)
 			name_label.text = planet.name
-			stats_label.text = "%s planet - %s cr./step, %s water, %s influence, %s growth mult." % [
-				planet.current_types[0], planet.current_score_per_step, planet.current_water_content, 
+			stats_label.text = "%s cr./step, %s water, %s influence, %s growth mult." % [
+				planet.current_score_per_step, planet.current_water_content, 
 				planet.current_effects_range, planet.current_crop_growth_multiplier
 			]
 			effect_label.text = "%s" % planet.current_effects[0].name

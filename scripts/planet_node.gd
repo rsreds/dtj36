@@ -42,10 +42,11 @@ var current_score_per_step := 0
 
 var base_crop_growth_multiplier := 1.0
 var current_crop_growth_multiplier := 1.0
-var crop_amount := 0
+var crop_amount := 0.0
 
 var on_planet: bool = false
 var accumulated_score: int = 0
+
 
 func _ready() -> void:
 	var size = MIN_SIZE + planet_size_multiplier * DEFAULT_SIZE
@@ -54,6 +55,7 @@ func _ready() -> void:
 	range_mesh.get_surface_override_material(0).albedo_color = Color(planet_color.r, planet_color.g, planet_color.b, 0.33)
 	range_mesh.mesh.top_radius = base_effects_range
 	range_mesh.visible = false
+
 
 func _process(_delta: float) -> void:
 	if is_being_dragged:
