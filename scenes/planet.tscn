@@ -61,10 +61,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_1odxm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConcavePolygonShape3D_1odxm")
 
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.0824951, 0.996591, 0, -0.996591, 0.0824951, 0, 0.911636, -0.82685)
-text = "Hello there"
-
 [node name="RangeMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_cktii")
 surface_material_override/0 = SubResource("StandardMaterial3D_h8ms6")

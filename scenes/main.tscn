@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://43c7fa0m426h" path="res://scripts/harvest_zone.gd" id="4_85g3d"]
 [ext_resource type="Script" uid="uid://c455f22dm0s3a" path="res://scripts/plant/crop.gd" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cnyqnonj0rr1d" path="res://scenes/crop_card.tscn" id="6_85g3d"]
-[ext_resource type="Texture2D" uid="uid://dulu7wuutg4mf" path="res://assets/plants.png" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://ckw6u1ehl8tps" path="res://scripts/mouse_tooltip.gd" id="9_choun"]
 [ext_resource type="PackedScene" uid="uid://dw6svdvxr66ad" path="res://scenes/space_tooltip.tscn" id="11_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://cqmdb4fuyvy0t" path="res://scenes/tooltip_view.tscn" id="12_eb6dy"]
@@ -60,8 +59,11 @@ optimal_water = 0
 base_growth_rate = 1
 metadata/_custom_type_script = "uid://c455f22dm0s3a"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
-atlas = ExtResource("9_85g3d")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a8y0u"]
+load_path = "res://.godot/imported/plants.png-54ade7bc780af7d091f5f4ac980ba3bd.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkv2x"]
+atlas = SubResource("CompressedTexture2D_a8y0u")
 region = Rect2(341.5, 0, 115, 178)
 
 [node name="Container" type="Control"]
@@ -226,7 +228,7 @@ layout_mode = 2
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
-texture = SubResource("AtlasTexture_choun")
+texture = SubResource("AtlasTexture_jkv2x")
 expand_mode = 1
 stretch_mode = 5
 
@@ -294,6 +296,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Sound: ON
 "
+
+[node name="Icons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="mouse_entered" from="HBoxToolContainer/DestroyPanel" to="HBoxToolContainer/DestroyPanel" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxToolContainer/DestroyPanel" to="HBoxToolContainer/DestroyPanel" method="_on_mouse_exited"]

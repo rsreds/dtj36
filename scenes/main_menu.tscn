@@ -194,7 +194,6 @@ orbit_distance = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
 [node name="Planet" parent="BackgroundView/Orbit2/Marker3D" instance=ExtResource("5_rtw2f")]
-planet_size_multiplier = 1
 planet_color = Color(0.288525, 0.563639, 0.549261, 1)
 
 [node name="OrbitMesh" type="MeshInstance3D" parent="BackgroundView/Orbit2"]

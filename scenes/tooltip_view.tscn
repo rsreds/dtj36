@@ -12,28 +12,28 @@ load_path = "res://.godot/imported/icons.png-9638851efbee5517d4b4cd55f414e20f.ct
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xiffg"]
 atlas = SubResource("CompressedTexture2D_w8htg")
-region = Rect2(44.5, -1.5, 57, 48)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_57lc5"]
-load_path = "res://.godot/imported/icons.png-9638851efbee5517d4b4cd55f414e20f.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lvvlp"]
-atlas = SubResource("CompressedTexture2D_57lc5")
-region = Rect2(99.5, 0, 51, 52)
+region = Rect2(45, 0, 50, 45)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_47v02"]
 load_path = "res://.godot/imported/icons.png-9638851efbee5517d4b4cd55f414e20f.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_61c1w"]
 atlas = SubResource("CompressedTexture2D_47v02")
-region = Rect2(151.5, -4.25, 55, 53)
+region = Rect2(155, 2, 45, 45)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q82qv"]
 load_path = "res://.godot/imported/icons.png-9638851efbee5517d4b4cd55f414e20f.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fp71v"]
 atlas = SubResource("CompressedTexture2D_q82qv")
-region = Rect2(214.5, -3.25, 55, 54)
+region = Rect2(215, 0, 50, 50)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_57lc5"]
+load_path = "res://.godot/imported/icons.png-9638851efbee5517d4b4cd55f414e20f.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvvlp"]
+atlas = SubResource("CompressedTexture2D_57lc5")
+region = Rect2(100, 0, 51, 52)
 
 [node name="PanelContainer" type="PanelContainer"]
 anchors_preset = 15
@@ -76,7 +76,7 @@ text = "x10"
 [node name="Resource3_Icon" type="TextureRect" parent="HBoxContainer"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-texture = SubResource("AtlasTexture_lvvlp")
+texture = SubResource("AtlasTexture_61c1w")
 expand_mode = 1
 stretch_mode = 5
 
@@ -88,7 +88,7 @@ text = "x10"
 [node name="Resource4_Icon" type="TextureRect" parent="HBoxContainer"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-texture = SubResource("AtlasTexture_61c1w")
+texture = SubResource("AtlasTexture_fp71v")
 expand_mode = 1
 stretch_mode = 5
 
@@ -100,7 +100,7 @@ text = "x10"
 [node name="Resource5_Icon" type="TextureRect" parent="HBoxContainer"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-texture = SubResource("AtlasTexture_fp71v")
+texture = SubResource("AtlasTexture_lvvlp")
 expand_mode = 1
 stretch_mode = 5
 

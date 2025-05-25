@@ -12,7 +12,6 @@ enum WaterContent { LOW, MEDIUM, HIGH }
 @export_color_no_alpha var planet_color := Color.AQUA
 
 @onready var planet_mesh: MeshInstance3D = $MeshInstance3D
-@onready var planet_yield: Label3D = $Label3D
 @onready var range_mesh: MeshInstance3D = $RangeMesh
 @onready var camera: Camera3D = get_viewport().get_camera_3d()
 @onready var material := planet_mesh.get_surface_override_material(0)
@@ -50,15 +49,11 @@ func _ready() -> void:
 	var size = MIN_SIZE + planet_size_multiplier * DEFAULT_SIZE
 	planet_mesh.scale = Vector3.ONE * size
 	material.albedo_color = planet_color
-
-	planet_yield.visible = false
-	planet_yield.position.z = -size / 1.75
 	range_mesh.get_surface_override_material(0).albedo_color = Color(planet_color.r, planet_color.g, planet_color.b, 0.33)
 	range_mesh.mesh.top_radius = float(base_effects_range / 20)
 
 
 func _process(_delta: float) -> void:
-	planet_yield.global_rotation.y = 0
 	if is_being_dragged:
 		if Input.is_action_pressed("ui_click"):
 			var mouse_pos := get_viewport().get_mouse_position()
@@ -83,8 +78,6 @@ func _process(_delta: float) -> void:
 			if GameManager.object_being_dragged is Crop:
 				# Set the crop on click
 				crop = GameManager.object_being_dragged
-				planet_yield.visible = true
-				planet_yield.text = crop.name
 				GameManager.stop_dragging()
 				GameManager.next_turn()
 				
