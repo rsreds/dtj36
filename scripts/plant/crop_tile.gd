@@ -1,6 +1,19 @@
 extends PanelContainer
 
 @export var crop_info: Crop
+@onready var texture: AtlasTexture = $TextureRect.texture
+
+func _ready() -> void:
+	if crop_info.name == GameManager.crop_list[0]["name"]:
+		texture.region = Rect2(199.25, 31.5, 122, 154)
+	elif crop_info.name == GameManager.crop_list[1]["name"]:
+		texture.region = Rect2(345.25, -2, 117, 182)
+	elif crop_info.name == GameManager.crop_list[2]["name"]:
+		texture.region = Rect2(0, 0, 150, 155)
+	elif crop_info.name == GameManager.crop_list[3]["name"]:
+		texture.region = Rect2(14.563, 201, 141, 150)
+	elif crop_info.name == GameManager.crop_list[4]["name"]:
+		texture.region = Rect2(174.5, 232, 164, 142)
 
 func _gui_input(event):
 	if event.is_action_pressed("ui_click"):

@@ -1,8 +1,14 @@
 extends Panel
 
-func _gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed: ## TODO: Event not firing?? No mouse release getting identified
-			if GameManager.is_dragging and GameManager.object_being_dragged is PlanetNode:
-				print("Destroy!!!!!")
-				GameManager.stop_dragging()
+var on_destroy: bool = false
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_released("ui_click") and on_destroy and GameManager.is_dragging and GameManager.object_being_dragged is PlanetNode:
+		print("Destroy!!!!!")
+		GameManager.stop_dragging()
+
+func _on_mouse_entered() -> void:
+	on_destroy = true
+
+func _on_mouse_exited() -> void:
+	on_destroy = false

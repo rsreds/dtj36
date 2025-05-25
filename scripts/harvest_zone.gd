@@ -1,8 +1,14 @@
 extends Panel
 
-func _gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
-			if GameManager.is_dragging and GameManager.object_being_dragged is PlanetNode:
-				print("Harvest!!!!!")
-				GameManager.stop_dragging()
+var on_harvest: bool = false
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_released("ui_click") and on_harvest and GameManager.is_dragging and GameManager.object_being_dragged is PlanetNode:
+		print("Harvest!!!!!")
+		GameManager.stop_dragging()
+
+func _on_mouse_entered() -> void:
+	on_harvest = true
+
+func _on_mouse_exited() -> void:
+	on_harvest = false

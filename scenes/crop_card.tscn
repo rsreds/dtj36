@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnyqnonj0rr1d"]
+
+[ext_resource type="Script" uid="uid://dbygc6qaouoxv" path="res://scripts/plant/crop_tile.gd" id="1_r1pw0"]
+[ext_resource type="Script" uid="uid://c455f22dm0s3a" path="res://scripts/plant/crop.gd" id="2_os78g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[sub_resource type="Resource" id="Resource_7mycd"]
+script = ExtResource("2_os78g")
+name = "Crimson Strands"
+optimal_water = 0
+base_growth_rate = 1
+metadata/_custom_type_script = "uid://c455f22dm0s3a"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r1pw0"]
+load_path = "res://.godot/imported/plants.png-54ade7bc780af7d091f5f4ac980ba3bd.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_os78g"]
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_r1pw0")
+region = Rect2(-7.5, -3, 149, 155)
+
+[node name="Crop" type="PanelContainer"]
+custom_minimum_size = Vector2(86, 86)
+theme_override_styles/panel = SubResource("StyleBoxFlat_tbgi4")
+script = ExtResource("1_r1pw0")
+crop_info = SubResource("Resource_7mycd")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_os78g")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "10/20
+"

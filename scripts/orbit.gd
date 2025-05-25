@@ -73,7 +73,7 @@ func _on_mouse_exited() -> void:
 
 
 func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if event.is_action_released("ui_click"):
+	if event.is_action_pressed("ui_click"):
 		if GameManager.is_dragging and GameManager.object_being_dragged is PlanetNode and GameManager.is_dragging_new_planet and not has_planets():
 			set_glow(false)
 			GameManager.is_dragging_new_planet = false

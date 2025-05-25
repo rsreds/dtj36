@@ -59,40 +59,35 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	planet_yield.global_rotation.y = 0
 	if is_being_dragged:
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if Input.is_action_pressed("ui_click"):
 			var mouse_pos := get_viewport().get_mouse_position()
 			var from := camera.project_ray_origin(mouse_pos)
 			var to := from + camera.project_ray_normal(mouse_pos) * 1000
 			var hit = Plane(Vector3.UP, 1).intersects_ray(from, to)
 			if hit:
 				global_position = hit + drag_offset
-		else:
-			is_being_dragged = false
-			GameManager.stop_dragging()
-			_return_to_place()
 
 
 func _on_input_event(_camera: Node, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			if GameManager.object_being_dragged is Crop:
-				# Set the crop on click
-				crop = GameManager.object_being_dragged
-				planet_yield.visible = true
-				planet_yield.text = crop.name
-				GameManager.stop_dragging()
-				GameManager.next_turn()
-			else:
-				# Start dragging planet
-				is_being_dragged = true
-				GameManager.start_dragging(self)
-				drag_offset = global_position - event_position
-				original_position = global_position
+	if event.is_action_pressed("ui_click"):
+		if GameManager.object_being_dragged is Crop:
+			# Set the crop on click
+			crop = GameManager.object_being_dragged
+			planet_yield.visible = true
+			planet_yield.text = crop.name
+			GameManager.stop_dragging()
+			GameManager.next_turn()
 		else:
-			if is_being_dragged:
-				is_being_dragged = false
-				GameManager.stop_dragging()
-				_return_to_place()
+			# Start dragging planet
+			is_being_dragged = true
+			GameManager.start_dragging(self)
+			drag_offset = global_position - event_position
+			original_position = global_position
+	elif event.is_action_released("ui_click"):
+		if is_being_dragged:
+			is_being_dragged = false
+			GameManager.stop_dragging()
+			_return_to_place()
 
 
 func _on_mouse_entered() -> void:

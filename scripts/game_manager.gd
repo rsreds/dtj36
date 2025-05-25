@@ -21,10 +21,16 @@ var object_being_dragged: Variant = null
 
 var orbits: Array[OrbitNode] = []
 
+var crop_list:Array[Dictionary] = [
+	{"name": "Crimson Strands", "optimal_water":0, "base_growth_rate":1},
+	{"name": "Snowsponge", "optimal_water":2, "base_growth_rate":2},
+	{"name": "Star Mangoes", "optimal_water":1, "base_growth_rate":1},
+	{"name": "Soylent Greens", "optimal_water":0, "base_growth_rate":1},
+	{"name": "Sprinks", "optimal_water":0, "base_growth_rate":1}
+]
+
 func _ready() -> void:
 	create_new_objectives()
-	
-
 
 func next_turn() -> void:
 	PlanetManager.next_turn()
