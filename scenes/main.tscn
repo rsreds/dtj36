@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ce4w7q6ulqodm"]
+[gd_scene load_steps=28 format=3 uid="uid://ce4w7q6ulqodm"]
 
 [ext_resource type="Script" uid="uid://t5f8rleex6tx" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://cyjsuudmlnffw" path="res://scenes/space_view.tscn" id="1_ig7tw"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://c455f22dm0s3a" path="res://scripts/plant/crop.gd" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cnyqnonj0rr1d" path="res://scenes/crop_card.tscn" id="6_85g3d"]
 [ext_resource type="Theme" uid="uid://dqh5awtgvihxe" path="res://assets/new_theme.tres" id="6_jbj1t"]
+[ext_resource type="Script" uid="uid://crassng5d73nk" path="res://scenes/skip_button.gd" id="8_muem4"]
 [ext_resource type="Script" uid="uid://ckw6u1ehl8tps" path="res://scripts/mouse_tooltip.gd" id="9_choun"]
 [ext_resource type="PackedScene" uid="uid://dw6svdvxr66ad" path="res://scenes/space_tooltip.tscn" id="11_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://cqmdb4fuyvy0t" path="res://scenes/tooltip_view.tscn" id="12_eb6dy"]
@@ -22,6 +23,9 @@ bg_color = Color(0.996078, 0, 0, 0.45098)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb6dy"]
 bg_color = Color(0.403922, 0.682353, 0.352941, 0.568627)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dp3eg"]
+bg_color = Color(0.756045, 0.553966, 0.348447, 1)
 
 [sub_resource type="Resource" id="Resource_tipki"]
 script = ExtResource("4_lquwl")
@@ -144,13 +148,13 @@ size_flags_horizontal = 3
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 438.0
+offset_bottom = 457.0
 grow_horizontal = 2
 
 [node name="Label" type="Label" parent="SidePanel/VBoxCardContainer"]
 layout_mode = 2
 theme = ExtResource("6_jbj1t")
-text = "Agronaut Corporation's Plan(e)ts, 300 Credits each!"
+text = "Agronaut Corporation's Plan(e)ts, 250 Credits each!"
 horizontal_alignment = 1
 
 [node name="Card1" parent="SidePanel/VBoxCardContainer" instance=ExtResource("2_0xm2m")]
@@ -161,6 +165,12 @@ layout_mode = 2
 
 [node name="Card3" parent="SidePanel/VBoxCardContainer" instance=ExtResource("2_0xm2m")]
 layout_mode = 2
+
+[node name="Button" type="Button" parent="SidePanel/VBoxCardContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_dp3eg")
+text = "Let Time Pass"
+script = ExtResource("8_muem4")
 
 [node name="HBoxCropContainer" type="HFlowContainer" parent="SidePanel"]
 layout_mode = 1
@@ -432,6 +442,7 @@ horizontal_alignment = 1
 [connection signal="mouse_exited" from="HBoxToolContainer/DestroyPanel" to="HBoxToolContainer/DestroyPanel" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="HBoxToolContainer/HarvestPanel" to="HBoxToolContainer/HarvestPanel" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxToolContainer/HarvestPanel" to="HBoxToolContainer/HarvestPanel" method="_on_mouse_exited"]
+[connection signal="pressed" from="SidePanel/VBoxCardContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="PauseScreen/Panel/VBoxContainer/Resume" to="PauseScreen" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseScreen/Panel/VBoxContainer/Back to Title" to="PauseScreen" method="_on_back_to_title_pressed"]
 [connection signal="pressed" from="PauseScreen/Panel/VBoxContainer/Sound" to="PauseScreen" method="_on_sound_pressed"]

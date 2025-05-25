@@ -10,7 +10,7 @@ signal step
 const SCORE_POPUP = preload("res://scenes/score_popup.tscn")
 var muted: bool = false
 
-var score: int = 0
+var score: int = 500
 
 var total_steps: int = 50
 var current_steps:int = 0
@@ -35,27 +35,23 @@ var crop_list: Array[Dictionary] = [
 
 var level_list = [
 	[
-		Objective.new("Earn 1000 credits", func (): return score >= 1000)
+		Objective.new("Earn 4000 credits", func (): return score >= 1000)
 	],
 	[
-		Objective.new("Earn 2000 credits", func (): return score >= 2000), 
-		Objective.new("Harvest 20 Crimson Strands", func (): return crop_list[0]['amount'] >= 20)
+		Objective.new("Earn 8000 credits", func (): return score >= 2000), 
+		Objective.new("Harvest 20 Crimson Strands and 20 Sprinks", func (): return crop_list[0]['amount'] >= 20 and crop_list[4]['amount'] >= 20)
 	],
 	[
-		Objective.new("Earn 3000 credits", func (): return score >= 3000), 
+		Objective.new("Earn 10000 credits", func (): return score >= 3000), 
 		Objective.new("Have 4 planets", func (): return len(planets) >= 4),
-		Objective.new("Harvest 10 of each plant", func (): return crop_list[0]['amount'] >= 10 and crop_list[3]['amount'] >= 10 and crop_list[1]['amount'] >= 10),
+		Objective.new("Harvest 10 of each plant", func (): return crop_list[0]['amount'] >= 10 and crop_list[3]['amount'] >= 10 and crop_list[1]['amount'] >= 10 and crop_list[2]['amount'] >= 10 and crop_list[4]['amount'] >= 10),
 	],
 	[
-		Objective.new("Earn 4000 credits", func (): return score >= 3000), 
-		Objective.new("Have 6 planets", func (): return len(planets) >= 4),
+		Objective.new("Earn 20000 credits", func (): return score >= 3000), 
+		Objective.new("Have 6 planets", func (): return len(planets) >= 6),
 		Objective.new("Harvest 20 of each plant", func (): return crop_list[0]['amount'] >= 20 and crop_list[3]['amount'] >= 20 and crop_list[1]['amount'] >= 20 and crop_list[4]['amount'] >= 20 and crop_list[2]['amount'] >= 20),
 	],
 ]
-
-
-func _ready() -> void:
-	pass
 
 
 func check_objectives() -> bool:
@@ -85,8 +81,8 @@ func next_turn() -> void:
 			if o.planet.crop:
 				o.planet.crop_amount += o.planet.crop.base_growth_rate * o.planet.current_crop_growth_multiplier
 			if o.orbit_completed:
-				await GameManager.show_point_popup("+%s" % o.planet.accumulated_score, o.planet, Color.GOLDENROD)
 				score += o.planet.accumulated_score
+				GameManager.show_point_popup("+%s" % o.planet.accumulated_score, o.planet, Color.GOLDENROD)
 				o.planet.accumulated_score = 0
 				o.orbit_completed = false
 	current_steps += 1
@@ -127,5 +123,5 @@ func reset():
 	current_steps = 0
 	orbits = []
 	planets = []
-	score = 0
+	score = 500
 	

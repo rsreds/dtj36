@@ -57,3 +57,7 @@ func _on_game_over()->void:
 func _on_win()->void:
 	get_tree().paused = true
 	win_screen.visible = true
+
+
+func _on_button_pressed() -> void:
+	GameManager.next_turn()
