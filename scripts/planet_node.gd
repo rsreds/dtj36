@@ -45,6 +45,7 @@ var current_crop_growth_multiplier := 1.0
 var crop_amount := 0
 
 var on_planet: bool = false
+var accumulated_score: int = 0
 
 func _ready() -> void:
 	var size = MIN_SIZE + planet_size_multiplier * DEFAULT_SIZE
@@ -159,7 +160,7 @@ static func generate_new() -> PlanetNode:
 	instance.base_effects = [EffectsRegistry.get_random_effect()]
 	instance.current_effects = instance.base_effects.duplicate()
 
-	instance.base_effects_range = randi_range(6, 6)
+	instance.base_effects_range = randi_range(1, 6)
 	instance.current_effects_range = instance.base_effects_range
 
 	instance.base_water_content = WaterContent.values().pick_random()

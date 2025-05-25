@@ -65,6 +65,8 @@ shape = SubResource("ConcavePolygonShape3D_1odxm")
 mesh = SubResource("CylinderMesh_cktii")
 surface_material_override/0 = SubResource("StandardMaterial3D_h8ms6")
 
+[node name="Label3D" type="Label3D" parent="."]
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

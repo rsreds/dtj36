@@ -16,5 +16,5 @@ func on_step(parent_planet: PlanetNode, planet_list: Array[PlanetNode]) -> void:
 			furthest = planet
 	
 	if furthest == parent_planet:
-		await GameManager.show_point_popup('x2', parent_planet)
+		GameManager.show_point_popup('x2', parent_planet)
 		parent_planet.current_score_per_step = parent_planet.current_score_per_step * 2

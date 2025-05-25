@@ -79,6 +79,7 @@ func next_turn() -> void:
 			o.planet.reset_stats()
 			for effect in o.planet.current_effects:
 				effect.on_step(o.planet, planets)
+			o.planet.accumulated_score += o.planet.current_score_per_step * (1 + (0.1 * o.orbit_distance))
 
 
 func draft_planet(new_planet_data: PlanetNode, orbit: OrbitNode) -> void:

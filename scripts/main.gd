@@ -11,6 +11,7 @@ func _process(delta: float) -> void:
 	
 	for child in icons_control.get_children():
 		child.free()
+
 	for child in space_view.get_children():
 		if child is OrbitNode:
 			if child.get_child(0).get_child_count():
@@ -18,7 +19,14 @@ func _process(delta: float) -> void:
 				var crop = planet.crop
 				var camera = get_viewport().get_camera_3d()
 				var icon_position = camera.unproject_position(planet.global_position)
-				var region:Rect2
+				
+				var label = Label.new()
+				label.position = icon_position - label.size/2
+				label.position.y -= label.size.y
+				label.text = "%s Cr." % planet.accumulated_score
+				icons_control.add_child(label)
+				
+				var region: Rect2
 				if not crop:
 					continue
 				if crop.name == GameManager.crop_list[0]["name"]:
@@ -31,9 +39,10 @@ func _process(delta: float) -> void:
 					region = Rect2(215,0,50,50)
 				if crop.name == GameManager.crop_list[4]["name"]:
 					region = Rect2(100,0,51,52)
+
 				var new_icon = CROP_ICON.instantiate()
 				new_icon.position = icon_position - new_icon.size/2
-				var texture:AtlasTexture = new_icon.get_child(0).texture
+				var texture: AtlasTexture = new_icon.get_child(0).texture
 				texture.region = region
 				icons_control.add_child(new_icon)
 				
