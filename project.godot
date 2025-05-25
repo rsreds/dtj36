@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://scripts/game_manager.gd"
 DeckManager="*res://scripts/deck_manager.gd"
+MasterAudio="*res://scenes/master_audio.tscn"
 
 [display]
 

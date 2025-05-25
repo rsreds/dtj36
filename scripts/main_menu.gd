@@ -17,9 +17,11 @@ func _ready() -> void:
 func _on_sound_pressed() -> void:
 	if GameManager.muted:
 		GameManager.muted = false
+		MasterAudio.unmute()
 		sound_button.text = "Sound: ON"
 	else:
 		GameManager.muted = true
+		MasterAudio.mute()
 		sound_button.text = "Sound: OFF"
 
 

@@ -10,3 +10,6 @@ func _ready() -> void:
 	$AnimationPlayer.play("pop_up")
 	await $AnimationPlayer.animation_finished
 	done.emit()
+
+func play_sound()->void:
+	MasterAudio.play_pickup_sound()

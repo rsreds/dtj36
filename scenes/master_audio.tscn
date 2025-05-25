@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b72hgdns2yc0t"]
+
+[ext_resource type="Script" uid="uid://cwdgteedy2k5" path="res://scripts/master_audio.gd" id="1_et8jl"]
+[ext_resource type="AudioStream" uid="uid://cgbda6d7x7fcq" path="res://assets/pickupCoin.wav" id="2_w7qnx"]
+
+[node name="Control" type="Node"]
+script = ExtResource("1_et8jl")
+
+[node name="BGAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 32
+
+[node name="PickupAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_w7qnx")
+bus = &"Pickup"
