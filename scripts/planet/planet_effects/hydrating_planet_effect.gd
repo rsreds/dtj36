@@ -9,7 +9,7 @@ func _init() -> void:
 
 func on_step(parent_planet: PlanetNode, planet_list: PlanetList) -> void:
 	var nearby: = PlanetManager.get_nearby_planets(parent_planet)
-	for planet in planet_list.planets:
+	for planet in planet_list.planets.values():
 		if planet in nearby:
 			planet.current_water_content = planet.current_water_content + 1 as PlanetNode.WaterContent
 		else:

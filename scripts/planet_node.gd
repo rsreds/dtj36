@@ -110,9 +110,9 @@ func _return_to_place() -> void:
 	create_tween().tween_property(self, "global_position", original_position, 0.3).set_trans(Tween.TRANS_SPRING)
 
 
-func draft() -> void:
+func draft(orbit: OrbitNode) -> void:
 	camera = get_viewport().get_camera_3d()
-	PlanetManager.draft_planet(GameManager.object_being_dragged.planet)
+	PlanetManager.draft_planet(GameManager.object_being_dragged.planet, orbit)
 
 
 static func generate_new() -> PlanetNode:

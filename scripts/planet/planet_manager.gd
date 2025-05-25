@@ -9,8 +9,8 @@ func next_turn() -> void:
 	planet_list.step_all()
 
 
-func draft_planet(new_planet_data: PlanetNode) -> void:
-	planet_list.draft_planet(new_planet_data)
+func draft_planet(new_planet_data: PlanetNode, orbit: OrbitNode) -> void:
+	planet_list.draft_planet(new_planet_data, orbit)
 	print("Drafted %s" % new_planet_data)
 	GameManager.next_turn()
 
@@ -18,7 +18,7 @@ func draft_planet(new_planet_data: PlanetNode) -> void:
 func get_nearby_planets(planet: PlanetNode) -> Array[PlanetNode]:
 	var nearby: Array[PlanetNode] = []
 
-	for other in planet_list.planets:
+	for other in planet_list.planets.values():
 		if other == planet:
 			continue
 		if planet.global_position.distance_to(other.global_position) <= planet.current_effects_range:

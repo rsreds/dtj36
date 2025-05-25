@@ -1,28 +1,28 @@
 class_name PlanetList
 extends Resource
 
-var planets: Array[PlanetNode]
+var planets: Dictionary[OrbitNode, PlanetNode]
 
 
 func step_all():
-	for planet in planets:
+	for planet in planets.values():
 		for effect in planet.current_effects:
 			effect.on_step(planet, self)
 
 
 func orbit_all():
-	for planet in planets:
+	for planet in planets.values():
 		for effect in planet.current_effects:
 			effect.on_orbit(planet, self)
 
 
 func trigger_all():
-	for planet in planets:
+	for planet in planets.values():
 		for effect in planet.current_effects:
 			effect.on_trigger(planet, self)
 
 
-func draft_planet(planet: PlanetNode):
-	planets.append(planet)
+func draft_planet(planet: PlanetNode, orbit: OrbitNode):
+	planets[orbit] = planet
 	for effect in planet.current_effects:
 		effect.on_drafted(planet, self)

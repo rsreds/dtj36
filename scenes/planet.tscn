@@ -53,6 +53,8 @@ rim_tint = 1.0
 
 [node name="Planet" type="StaticBody3D"]
 script = ExtResource("1_cktii")
+planet_size_multiplier = null
+planet_color = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_2kh1h")

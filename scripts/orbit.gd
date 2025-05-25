@@ -78,7 +78,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_released("ui_click") and on_orbit:
 		if GameManager.is_dragging and GameManager.object_being_dragged is PlanetCard and not has_planets():
 			set_glow(false)
-			var planet = GameManager.object_being_dragged.planet.duplicate()
-			planet_marker.add_child(planet)
-			planet.draft()
+			GameManager.object_being_dragged.planet.reparent(planet_marker)
+			GameManager.object_being_dragged.planet.position = Vector3.ZERO
+			GameManager.object_being_dragged.planet.draft(self)
+			GameManager.object_being_dragged.planet = null
 			GameManager.stop_dragging()
