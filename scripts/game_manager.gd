@@ -66,7 +66,7 @@ func show_point_popup(text:String, planet: PlanetNode, text_color:Color = Color.
 	var camera = get_viewport().get_camera_3d()
 	var point = SCORE_POPUP.instantiate()
 	point.text = text
-	point.color = text_color
+	point.text_color = text_color
 	point.position = camera.unproject_position(planet.global_position)
 	get_tree().root.add_child(point)
 	await point.done
