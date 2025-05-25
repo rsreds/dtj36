@@ -3,8 +3,12 @@ extends Control
 @onready var space_view: Node3D = $SpaceView
 const PLANET_ICON = preload("res://scenes/planet_icon.tscn")
 @onready var icons_control: Control = $Icons
+@onready var progress_bar: ProgressBar = $ProgressBar
 
 func _process(delta: float) -> void:
+	progress_bar.max_value = GameManager.total_steps
+	progress_bar.value = GameManager.current_steps
+	
 	if Input.is_action_just_pressed("ui_cancel") and not get_tree().paused:
 		get_tree().paused = true
 		pause_screen.visible = true

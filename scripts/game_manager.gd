@@ -8,6 +8,9 @@ var muted: bool = false
 
 var score: int
 
+var total_steps: int = 50
+var current_steps:int = 0
+
 var level: int = 0
 
 var green_plants_collected: int
@@ -80,7 +83,7 @@ func next_turn() -> void:
 			for effect in o.planet.current_effects:
 				effect.on_step(o.planet, planets)
 			o.planet.accumulated_score += o.planet.current_score_per_step * (1 + (0.1 * o.orbit_distance))
-
+	current_steps += 1
 
 func draft_planet(new_planet_data: PlanetNode, orbit: OrbitNode) -> void:
 	planets.assign(orbits.map(func (o): return o.planet).filter(func (p): return p != null))
