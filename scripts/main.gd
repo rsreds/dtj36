@@ -1,7 +1,7 @@
 extends Control
 @onready var pause_screen: Control = $PauseScreen
 @onready var space_view: Node3D = $SpaceView
-const CROP_ICON = preload("res://scenes/crop_icon.tscn")
+const PLANET_ICON = preload("res://scenes/planet_icon.tscn")
 @onready var icons_control: Control = $Icons
 
 func _process(delta: float) -> void:
@@ -39,10 +39,10 @@ func _process(delta: float) -> void:
 					region = Rect2(215,0,50,50)
 				if crop.name == GameManager.crop_list[4]["name"]:
 					region = Rect2(100,0,51,52)
-
-				var new_icon = CROP_ICON.instantiate()
+				var new_icon = PLANET_ICON.instantiate()
 				new_icon.position = icon_position - new_icon.size/2
-				var texture: AtlasTexture = new_icon.get_child(0).texture
+				new_icon.text = "x%d" % planet.crop_amount
+				var texture:AtlasTexture = new_icon.get_child(0).texture
 				texture.region = region
 				icons_control.add_child(new_icon)
 				

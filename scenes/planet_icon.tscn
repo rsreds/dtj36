@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://px32dxp0k3tm"]
+
+[ext_resource type="Script" uid="uid://drsw4k1jeulbn" path="res://scripts/planet_icon.gd" id="1_sfvcl"]
+[ext_resource type="Texture2D" uid="uid://sspaas0xhq57" path="res://assets/icons.png" id="2_hnspt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muem4"]
+resource_local_to_scene = true
+atlas = ExtResource("2_hnspt")
+region = Rect2(0, 0, 46.5, 52)
+
+[node name="PlanetIcon" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 16.0
+offset_bottom = 16.0
+mouse_filter = 2
+script = ExtResource("1_sfvcl")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_muem4")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -5.0
+offset_right = 55.0
+offset_bottom = 18.0
+text = "x0"
