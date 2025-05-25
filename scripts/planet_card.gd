@@ -15,7 +15,7 @@ extends PanelContainer
 				planet.current_effects_range, planet.current_crop_growth_multiplier
 			]
 			effect_label.text = "%s" % planet.current_effects[0].name
-			tooltip_text = "%s: %s" % planet.current_effects[0].description
+			tooltip_text = "%s" % planet.current_effects[0].description
 
 @onready var sub_view_port: SubViewport = $HBoxContainer/SubViewportContainer/SubViewPort
 @onready var name_label: Label = $HBoxContainer/VBoxContainer/Label

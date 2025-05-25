@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*res://scripts/game_manager.gd"
-PlanetManager="*res://scripts/planet/planet_manager.gd"
 DeckManager="*res://scripts/deck_manager.gd"
 
 [display]

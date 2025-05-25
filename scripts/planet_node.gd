@@ -51,7 +51,7 @@ func _ready() -> void:
 	planet_mesh.scale = Vector3.ONE * size
 	material.albedo_color = planet_color
 	range_mesh.get_surface_override_material(0).albedo_color = Color(planet_color.r, planet_color.g, planet_color.b, 0.33)
-	range_mesh.mesh.top_radius = float(base_effects_range / 20)
+	range_mesh.mesh.top_radius = base_effects_range
 
 func _process(_delta: float) -> void:
 	if is_being_dragged:
@@ -156,7 +156,7 @@ static func generate_new() -> PlanetNode:
 	instance.base_effects = [HydratingPlanetEffect.new()]
 	instance.current_effects = instance.base_effects.duplicate()
 
-	instance.base_effects_range = randi_range(10, 100)
+	instance.base_effects_range = randi_range(1, 6)
 	instance.current_effects_range = instance.base_effects_range
 
 	instance.base_water_content = WaterContent.values().pick_random()

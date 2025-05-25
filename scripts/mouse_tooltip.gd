@@ -13,11 +13,12 @@ func _process(delta: float) -> void:
 			sub_viewport_container.visible = false
 		else:
 			var p := GameManager.planet_being_hovered
-			visible = true
-			tooltip_view.visible = true
-			tooltip_view.get_node("VBoxContainer/WaterContent").text = "Water Content: %s" % p.current_water_content
-			tooltip_view.get_node("VBoxContainer/Temperature").text = "Temperature: %s" % p.orbit.orbit_distance 
-		
+			if p:
+				visible = true
+				tooltip_view.visible = true
+				tooltip_view.get_node("VBoxContainer/WaterContent").text = "Water Content: %s" % p.current_water_content
+				tooltip_view.get_node("VBoxContainer/Temperature").text = "Temperature: %s" % p.orbit.orbit_distance 
+
 	if Input.is_action_just_pressed("ui_click"):
 		if GameManager.object_being_dragged is PlanetCard:
 			var new_planet: PlanetNode = GameManager.object_being_dragged.planet.duplicate()

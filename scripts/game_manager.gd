@@ -66,6 +66,7 @@ func next_turn() -> void:
 	for o in orbits:
 		o.step()
 		if o.planet:
+			o.planet.reset_stats()
 			for effect in o.planet.current_effects:
 				effect.on_step(o.planet, planets)
 
@@ -75,6 +76,15 @@ func draft_planet(new_planet_data: PlanetNode, orbit: OrbitNode) -> void:
 	for effect in new_planet_data.current_effects:
 		effect.on_drafted(new_planet_data, planets)
 	next_turn()
+
+
+func get_nearby_planets(planet: PlanetNode) -> Array[PlanetNode]:
+	var p: Array[PlanetNode]
+	p.assign(planets.filter(
+		func (p: PlanetNode): 
+			return planet != p and planet.global_position.distance_to(p.global_position) <= planet.current_effects_range  
+	))
+	return p
 
 
 func start_dragging(information: Variant) -> void:
