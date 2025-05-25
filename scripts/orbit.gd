@@ -11,6 +11,7 @@ const ORBIT_GAP := 0.75
 @onready var collider: CollisionShape3D = $CollisionShape3D
 
 var planet: PlanetNode = null
+var on_orbit: bool = false
 
 func _ready() -> void:
 	var distance := ORBIT_MARGIN + orbit_distance * ORBIT_GAP
@@ -58,6 +59,7 @@ func reset_alpha() -> void:
 		set_alpha(0)
 
 func _on_mouse_entered() -> void:
+	on_orbit=true
 	reset_alpha()
 	if GameManager.is_dragging and GameManager.object_being_dragged is PlanetNode and GameManager.is_dragging_new_planet:
 		set_alpha(0.75)
@@ -66,14 +68,14 @@ func _on_mouse_entered() -> void:
 
 
 func _on_mouse_exited() -> void:
+	on_orbit = false
 	set_glow(false)
 	if not has_planets():
 		set_alpha(0.25)	
 		
 
-
-func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if event.is_action_pressed("ui_click"):
+func _process(delta: float) -> void:
+	if Input.is_action_just_released("ui_click") and on_orbit:
 		if GameManager.is_dragging and GameManager.object_being_dragged is PlanetNode and GameManager.is_dragging_new_planet and not has_planets():
 			set_glow(false)
 			GameManager.is_dragging_new_planet = false

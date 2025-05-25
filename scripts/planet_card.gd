@@ -9,6 +9,7 @@ const PLANET = preload("res://scenes/planet.tscn")
 @onready var stats_label: Label = $HBoxContainer/VBoxContainer/Label2
 @onready var effect_label: Label = $HBoxContainer/VBoxContainer/Label3
 
+var this_is_dragging: bool = false
 var ROTATION_SPEED : float = 0.1
 
 func _ready() -> void:
@@ -31,11 +32,19 @@ func _physics_process(delta: float) -> void:
 
 func _gui_input(event):
 	if event.is_action_pressed("ui_click"):
-		print("Clicked")
+		print("Draggin planet card")
+		this_is_dragging = true
 		GameManager.is_dragging = true
 		GameManager.start_dragging(planet)
 		GameManager.is_dragging_new_planet = true
-
+		
+func _process(delta: float) -> void:
+	if Input.is_action_just_released("ui_click"):
+		if GameManager.is_dragging and this_is_dragging:
+			GameManager.stop_dragging()
+			this_is_dragging = false
+			print("Dropped planet from card to be returned ", planet.name)
+			
 func _on_mouse_entered() -> void:
 	if not GameManager.is_dragging:
 		pivot_offset = Vector2(size.x, size.y/2)

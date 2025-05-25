@@ -41,7 +41,6 @@ func next_turn() -> void:
 func start_dragging(information: Variant) -> void:
 	is_dragging = true
 	object_being_dragged = information
-	print(information)
 
 
 func stop_dragging():

@@ -3,6 +3,8 @@ extends PanelContainer
 @export var crop_info: Crop
 @onready var texture: AtlasTexture = $TextureRect.texture
 
+var this_is_dragging:bool = false
+
 func _ready() -> void:
 	if crop_info.name == GameManager.crop_list[0]["name"]:
 		texture.region = Rect2(199.25, 31.5, 122, 154)
@@ -16,9 +18,19 @@ func _ready() -> void:
 		texture.region = Rect2(174.5, 232, 164, 142)
 
 func _gui_input(event):
-	if event.is_action_pressed("ui_click"):
+	if event.is_action_pressed("ui_click") and not GameManager.is_dragging:
 		GameManager.is_dragging = true
+		this_is_dragging = true
 		GameManager.start_dragging(crop_info)
+		print("Picked up ", crop_info.name)
+
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_released("ui_click"):
+		if GameManager.is_dragging and this_is_dragging:
+			GameManager.is_dragging = false
+			this_is_dragging = false
+			print("Dropped ", crop_info.name)
 
 func _on_mouse_entered() -> void:
 	if not GameManager.is_dragging:

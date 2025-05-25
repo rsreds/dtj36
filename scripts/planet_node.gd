@@ -44,6 +44,7 @@ var base_crop_growth_multiplier := 1.0
 var current_crop_growth_multiplier := 1.0
 var crop_amount := 0
 
+var on_planet:bool = false
 
 func _ready() -> void:
 	var size = MIN_SIZE + planet_size_multiplier * DEFAULT_SIZE
@@ -65,36 +66,37 @@ func _process(_delta: float) -> void:
 			var to := from + camera.project_ray_normal(mouse_pos) * 1000
 			var hit = Plane(Vector3.UP, 1).intersects_ray(from, to)
 			if hit:
-				global_position = hit + drag_offset
-
-
-func _on_input_event(_camera: Node, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if event.is_action_pressed("ui_click"):
-		if GameManager.object_being_dragged is Crop:
-			# Set the crop on click
-			crop = GameManager.object_being_dragged
-			planet_yield.visible = true
-			planet_yield.text = crop.name
-			GameManager.stop_dragging()
-			GameManager.next_turn()
-		else:
-			# Start dragging planet
-			is_being_dragged = true
-			GameManager.start_dragging(self)
-			drag_offset = global_position - event_position
-			original_position = global_position
-	elif event.is_action_released("ui_click"):
-		if is_being_dragged:
+				global_position = hit
+		elif Input.is_action_just_released("ui_click"):
+			print("Dropping planet")
 			is_being_dragged = false
 			GameManager.stop_dragging()
 			_return_to_place()
+	else:
+		if Input.is_action_pressed("ui_click") and on_planet and not GameManager.is_dragging:
+				# Start dragging planet
+				print("Draggin planet", self)
+				is_being_dragged = true
+				GameManager.start_dragging(self)
+				original_position = global_position
+		elif Input.is_action_just_released("ui_click") and on_planet and GameManager.is_dragging:
+			if GameManager.object_being_dragged is Crop:
+				# Set the crop on click
+				crop = GameManager.object_being_dragged
+				planet_yield.visible = true
+				planet_yield.text = crop.name
+				GameManager.stop_dragging()
+				GameManager.next_turn()
+				
 
 
 func _on_mouse_entered() -> void:
+	on_planet = true
 	set_glow(true)
 
 
 func _on_mouse_exited() -> void:
+	on_planet = false
 	set_glow(false)
 
 
